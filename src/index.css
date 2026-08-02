@@ -1,0 +1,87 @@
+/* ============================================================
+   Adhara — moderne & audacieux · sombre + rouge
+   Palette provisoire : à caler sur le logo une fois reçu.
+   ============================================================ */
+:root {
+  --bg:        #0A0A0D;
+  --bg-2:      #0E0E13;
+  --surface:   #15151C;
+  --surface-2: #1C1C25;
+  --line:      rgba(255, 255, 255, 0.08);
+
+  --ink:       #F4F4F7;
+  --ink-dim:   #A2A2B4;
+  --ink-faint: #64647A;
+
+  --red:       #8F1717;   /* rouge sang signature */
+  --red-deep:  #5E0E0E;   /* profondeur */
+  --red-hot:   #C7302A;   /* version lumineuse (lueurs, hovers, Adhara) */
+  --magenta:   #C7302A;   /* alias : accent vif dans la même famille rouge */
+  --grad:      linear-gradient(100deg, var(--red), var(--red-hot));
+
+  --max: 1160px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+h1, h2, h3 { font-family: "Space Grotesk", sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: clamp(4rem, 10vw, 8rem) 0; position: relative; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: "Space Grotesk", sans-serif; font-size: .78rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--red);
+}
+.eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--grad); }
+
+.section__title {
+  font-size: clamp(1.9rem, 4.4vw, 3.2rem); margin: 1.1rem 0 0; max-width: 20ch;
+  white-space: pre-line; /* respecte les sauts de ligne \n insérés dans le contenu (i18n.jsx) */
+}
+
+/* boutons */
+.btn {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .85rem 1.5rem; border-radius: 100px; font-weight: 600; font-size: .95rem;
+  border: 1px solid transparent; transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+}
+.btn--primary { background: var(--grad); color: #fff; box-shadow: 0 8px 30px rgba(143,23,23,0.45); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(199,48,42,0.55); }
+.btn--ghost { border-color: var(--line); color: var(--ink); background: rgba(255,255,255,0.02); }
+.btn--ghost:hover { border-color: var(--red); transform: translateY(-2px); }
+
+/* fondu au scroll : se fond dans le décor en disparaissant (flou + fondu),
+   en émerge à nouveau en réapparaissant. Sortie immédiate (pas de délai,
+   réactif) ; entrée avec le délai de décalage `--d` (arrivée en cascade). */
+.reveal {
+  opacity: 0; transform: translateY(28px); filter: blur(10px);
+  transition: opacity .6s var(--ease), transform .6s var(--ease), filter .6s var(--ease);
+}
+.reveal.in {
+  opacity: 1; transform: none; filter: blur(0);
+  transition: opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+
+/* halo décoratif */
+.glowdot { color: var(--magenta); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+  * { animation: none !important; }
+}
