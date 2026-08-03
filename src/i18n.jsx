@@ -21,7 +21,7 @@ export const CONTENT = {
       items: [
         { icon: "▲", name: "Applications mobiles", desc: "Des apps Android (et iOS) publiées sur les stores, pensées pour l'échelle mondiale et des millions d'utilisateurs." },
         { icon: "◆", name: "Logiciels sur mesure", desc: "Des outils et plateformes web robustes, taillés pour vos besoins métier, du prototype à la production." },
-        { icon: "●", name: "Design produit (UX/UI)", desc: "Des interfaces claires et audacieuses. On dessine des expériences qu'on a envie d'utiliser." }
+        { icon: "●", name: "Services d'automatisation", desc: "Des mini-agents ultra ciblés qui prennent en charge vos tâches répétitives, pour vous rendre du temps et de la précision." }
       ]
     },
     apps: {
