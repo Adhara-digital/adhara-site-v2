@@ -26,7 +26,7 @@ const EDGES = [
   ["wezen", "adhara"], ["adhara", "furud"], ["muliphein", "theta"]
 ];
 
-export default function StarField() {
+export default function OldUnused2DSpaceBackground() {
   const ref = useRef(null);
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 /* Petit trait rouge sur le côté, glisse selon la progression du scroll
    (remplace la scrollbar native masquée). */
-export default function ScrollIndicator() {
+export default function ScrollProgressBar() {
   const [p, setP] = useState(0);
   useEffect(() => {
     const onScroll = () => {

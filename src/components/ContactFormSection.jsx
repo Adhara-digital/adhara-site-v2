@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useLang } from "../i18n.jsx";
+import { useLang } from "../content-and-translations.jsx";
 
-export default function Contact() {
+export default function ContactFormSection() {
   const { t } = useLang();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });

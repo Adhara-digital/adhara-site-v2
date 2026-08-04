@@ -1,6 +1,6 @@
-import { useLang } from "../i18n.jsx";
+import { useLang } from "../content-and-translations.jsx";
 
-export default function Hero() {
+export default function WelcomeBanner() {
   const { t } = useLang();
   return (
     <section className="hero" id="top">

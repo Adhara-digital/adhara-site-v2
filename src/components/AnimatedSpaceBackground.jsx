@@ -94,7 +94,7 @@ function planetTex(a, b, c2, bands) {
   return new THREE.CanvasTexture(c);
 }
 
-export default function StarField3D() {
+export default function AnimatedSpaceBackground() {
   const ref = useRef(null);
   const veilRef = useRef(null);
 

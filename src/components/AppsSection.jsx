@@ -1,6 +1,6 @@
-import { useLang } from "../i18n.jsx";
+import { useLang } from "../content-and-translations.jsx";
 
-export default function Apps() {
+export default function AppsSection() {
   const { t } = useLang();
   return (
     <section className="section section--alt" id="apps">

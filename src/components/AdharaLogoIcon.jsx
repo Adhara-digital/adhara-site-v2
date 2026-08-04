@@ -3,7 +3,7 @@
    estimation visuelle). Structure et tracé du symbole respectés à
    l'identique ; seule différence assumée : le nœud central (le plus
    grand du réseau d'origine) devient l'étoile Adhara, avec une lueur. */
-export default function Logo({ height = 40 }) {
+export default function AdharaLogoIcon({ height = 40 }) {
   return (
     <span className="logo" style={{ "--logo-h": `${height}px` }}>
       <svg className="logo__icon" viewBox="0 0 190 190" fill="none" aria-hidden="true">

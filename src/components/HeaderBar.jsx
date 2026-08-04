@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLang } from "../i18n.jsx";
-import Logo from "./Logo.jsx";
+import { useLang } from "../content-and-translations.jsx";
+import AdharaLogoIcon from "./AdharaLogoIcon.jsx";
 
-export default function Nav() {
+export default function HeaderBar() {
   const { t, lang, toggle } = useLang();
   const [scrolled, setScrolled] = useState(false);
 
@@ -16,7 +16,7 @@ export default function Nav() {
   return (
     <header className={`nav ${scrolled ? "nav--solid" : ""}`}>
       <div className="wrap nav__inner">
-        <a href="#top" className="nav__brand"><Logo /></a>
+        <a href="#top" className="nav__brand"><AdharaLogoIcon /></a>
         <nav className="nav__links">
           <a href="#services">{t.nav.services}</a>
           <a href="#apps">{t.nav.apps}</a>

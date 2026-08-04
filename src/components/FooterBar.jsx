@@ -1,13 +1,13 @@
-import { useLang } from "../i18n.jsx";
-import Logo from "./Logo.jsx";
+import { useLang } from "../content-and-translations.jsx";
+import AdharaLogoIcon from "./AdharaLogoIcon.jsx";
 
-export default function Footer() {
+export default function FooterBar() {
   const { t } = useLang();
   return (
     <footer className="footer">
       <div className="wrap footer__inner">
         <div className="footer__brand">
-          <Logo height={34} />
+          <AdharaLogoIcon height={34} />
           <span className="footer__tag">{t.footer.tagline}</span>
         </div>
         <div className="footer__links">
