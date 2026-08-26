@@ -142,7 +142,7 @@
   flex: 0 0 auto;
 }
 .logo__word {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Turret Road", "Space Grotesk", sans-serif;
   font-weight: 800;
   letter-spacing: 0.03em;
   font-size: calc(var(--logo-h, 34px) * 0.62);
@@ -365,6 +365,17 @@
   color: #fff;
   flex: 0 0 auto;
 }
+.appcard__icon--img {
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  object-fit: cover;
+  transition: border-color .4s var(--ease), transform .4s var(--ease);
+}
+.appcard:hover .appcard__icon--img {
+  border-color: rgba(199, 48, 42, 0.55);
+  transform: scale(1.04);
+}
 .appcard h3 {
   font-size: 1.15rem;
 }
@@ -482,19 +493,11 @@
   display: grid;
   place-items: center;
 }
-.about__star {
-  font-size: clamp(6rem, 16vw, 12rem);
-  background: var(--grad);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 40px rgba(143, 23, 23, 0.5));
-  animation: spinstar 24s linear infinite;
-}
-@keyframes spinstar {
-  to {
-    transform: rotate(360deg);
-  }
+.about__mark-canvas {
+  width: clamp(13rem, 22vw, 18rem);
+  height: clamp(13rem, 22vw, 18rem);
+  display: block;
+  filter: drop-shadow(0 0 34px rgba(143, 23, 23, 0.3));
 }
 
 /* ---------- CONTACT ---------- */

@@ -9,7 +9,7 @@ export const CONTENT = {
     nav: { services: "Services", apps: "Applications", why: "Pourquoi nous", about: "À propos", contact: "Contact", cta: "Nous contacter" },
     hero: {
       eyebrow: "Studio high-tech · logiciels & applications",
-      title: ["Nous concevons", "des applications", "qui vont vite."],
+      title: ["Traversez l'entièreté de", "notre univers", "digital."],
       // Slogan à définir plus tard — accroche provisoire
       lead: "Adhara est un jeune studio qui crée des logiciels et des applications mobiles pour le monde entier. De l'idée au Play Store, avec audace.",
       ctaPrimary: "Découvrir nos apps",
@@ -19,9 +19,9 @@ export const CONTENT = {
       label: "Ce que nous faisons",
       title: "Trois savoir-faire, un seul niveau d'exigence.",
       items: [
-        { icon: "▲", name: "Applications mobiles", desc: "Des apps Android (et iOS) publiées sur les stores, pensées pour l'échelle mondiale et des millions d'utilisateurs." },
-        { icon: "◆", name: "Logiciels sur mesure", desc: "Des outils et plateformes web robustes, taillés pour vos besoins métier, du prototype à la production." },
-        { icon: "●", name: "Services d'automatisation", desc: "Des mini-agents ultra ciblés qui prennent en charge vos tâches répétitives, pour vous rendre du temps et de la précision." }
+        { icon: "▲", name: "Applications et logiciels", desc: "Des logiciels et applications conçus pour répondre à un vrai besoin, et vous simplifier la vie." },
+        { icon: "◆", name: "Sites web et branding", desc: "Des sites qui marquent les esprits, une identité visuelle forte — du logo jusqu'à la mise en ligne." },
+        { icon: "●", name: "Services promotionnels & réseaux sociaux", desc: "Contenus, campagnes et présence sociale pour faire rayonner votre marque là où ça compte." }
       ]
     },
     apps: {
@@ -29,9 +29,9 @@ export const CONTENT = {
       title: "Déjà entre les mains\ndu monde entier.",
       note: "Aperçus provisoires — vos vraies applications du Play Store viendront ici.",
       cards: [
-        { name: "Proserpine", tag: "Écologie · Scan", desc: "Triez vos déchets en un scan.", rating: "4.8", installs: "500 k+" },
-        { name: "Workflow Studio", tag: "Automatisation", desc: "Automatisez vos solutions professionnelles.", rating: "4.7", installs: "1 M+" },
-        { name: "SportLife", tag: "Sport & bien-être", desc: "Dépensez-vous en vous amusant.", rating: "4.9", installs: "250 k+" }
+        { name: "Proserpine", tag: "Écologie · Scan", desc: "Triez vos déchets en un scan.", rating: "4.8", installs: "45 k+" },
+        { name: "Workflow Studio", tag: "Automatisation", desc: "Automatisez vos solutions professionnelles.", rating: "4.7", installs: "38 k+" },
+        { name: "SportLife", tag: "Sport & bien-être", desc: "Dépensez-vous en vous amusant.", rating: "4.9", installs: "62 k+" }
       ],
       store: "Voir sur le Play Store"
     },
@@ -47,9 +47,9 @@ export const CONTENT = {
     stats: {
       label: "En chiffres",
       items: [
-        { value: "1,7 M+", label: "Téléchargements" },
+        { value: "140 k+", label: "Téléchargements" },
         { value: "4.8", label: "Note moyenne" },
-        { value: "40+", label: "Pays touchés" },
+        { value: "18+", label: "Pays touchés" },
         { value: "3", label: "Apps publiées" }
       ]
     },
@@ -78,7 +78,7 @@ export const CONTENT = {
     nav: { services: "Services", apps: "Apps", why: "Why us", about: "About", contact: "Contact", cta: "Get in touch" },
     hero: {
       eyebrow: "High-tech studio · software & apps",
-      title: ["We build", "applications", "that move fast."],
+      title: ["Traverse the entirety", "of our digital", "universe."],
       lead: "Adhara is a young studio crafting software and mobile apps for the whole world. From idea to the Play Store, boldly.",
       ctaPrimary: "See our apps",
       ctaSecondary: "Start a project"
@@ -87,9 +87,9 @@ export const CONTENT = {
       label: "What we do",
       title: "Three crafts, one standard.",
       items: [
-        { icon: "▲", name: "Mobile apps", desc: "Android (and iOS) apps shipped to the stores, built for global scale and millions of users." },
-        { icon: "◆", name: "Custom software", desc: "Robust web tools and platforms, tailored to your business, from prototype to production." },
-        { icon: "●", name: "Product design (UX/UI)", desc: "Clear, bold interfaces. We design experiences people actually want to use." }
+        { icon: "▲", name: "Apps & software", desc: "Software and apps designed to solve a real need, and make your life easier." },
+        { icon: "◆", name: "Websites & branding", desc: "Sites that make an impression, a visual identity that's truly yours — from logo to launch." },
+        { icon: "●", name: "Promotion & social media", desc: "Content, campaigns, and social presence to put your brand where it matters." }
       ]
     },
     apps: {
@@ -97,9 +97,9 @@ export const CONTENT = {
       title: "Already in hands worldwide.",
       note: "Placeholder previews — your real Play Store apps will live here.",
       cards: [
-        { name: "Proserpine", tag: "Ecology · Scan", desc: "Sort your waste in a single scan.", rating: "4.8", installs: "500k+" },
-        { name: "Workflow Studio", tag: "Automation", desc: "Automate your business solutions.", rating: "4.7", installs: "1M+" },
-        { name: "SportLife", tag: "Fitness & wellness", desc: "Get moving while having fun.", rating: "4.9", installs: "250k+" }
+        { name: "Proserpine", tag: "Ecology · Scan", desc: "Sort your waste in a single scan.", rating: "4.8", installs: "45k+" },
+        { name: "Workflow Studio", tag: "Automation", desc: "Automate your business solutions.", rating: "4.7", installs: "38k+" },
+        { name: "SportLife", tag: "Fitness & wellness", desc: "Get moving while having fun.", rating: "4.9", installs: "62k+" }
       ],
       store: "View on Play Store"
     },
@@ -115,9 +115,9 @@ export const CONTENT = {
     stats: {
       label: "By the numbers",
       items: [
-        { value: "1.7M+", label: "Downloads" },
+        { value: "140k+", label: "Downloads" },
         { value: "4.8", label: "Avg. rating" },
-        { value: "40+", label: "Countries reached" },
+        { value: "18+", label: "Countries reached" },
         { value: "3", label: "Apps shipped" }
       ]
     },

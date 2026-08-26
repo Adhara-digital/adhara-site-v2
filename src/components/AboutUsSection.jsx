@@ -1,4 +1,5 @@
 import { useLang } from "../content-and-translations.jsx";
+import AboutNeuralOrb from "./AboutNeuralOrb.jsx";
 
 export default function AboutUsSection() {
   const { t } = useLang();
@@ -13,7 +14,7 @@ export default function AboutUsSection() {
           ))}
         </div>
         <div className="about__mark reveal" aria-hidden="true">
-          <span className="about__star">✦</span>
+          <AboutNeuralOrb />
         </div>
       </div>
     </section>

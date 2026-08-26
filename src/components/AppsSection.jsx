@@ -14,7 +14,11 @@ export default function AppsSection() {
           {t.apps.cards.map((a, i) => (
             <article className="appcard reveal" style={{ "--d": `${i * 0.08}s` }} key={i}>
               <div className="appcard__top">
-                <span className="appcard__icon" aria-hidden="true">{a.name.charAt(0)}</span>
+                {a.logo ? (
+                  <img className="appcard__icon appcard__icon--img" src={a.logo} alt={`Logo ${a.name}`} />
+                ) : (
+                  <span className="appcard__icon" aria-hidden="true">{a.name.charAt(0)}</span>
+                )}
                 <div>
                   <h3>{a.name}</h3>
                   <span className="appcard__tag">{a.tag}</span>
