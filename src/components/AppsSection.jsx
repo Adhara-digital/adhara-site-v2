@@ -15,7 +15,7 @@ export default function AppsSection() {
           <p className="eyebrow reveal">{t.apps.label}</p>
           <h2 className="section__title reveal">{t.apps.title}</h2>
           <p className="feature__desc reveal">{a.desc}</p>
-          <a href="#contact" className="btn btn--primary feature__cta reveal">{t.apps.store} →</a>
+          <span className="btn btn--primary feature__cta feature__cta--soon reveal" aria-disabled="true">{t.apps.store}</span>
           <p className="section__note reveal">{t.apps.note}</p>
         </div>
 

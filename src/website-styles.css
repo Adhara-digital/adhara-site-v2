@@ -1007,3 +1007,11 @@ a.contact__email:hover {
     margin: 0 auto;
   }
 }
+
+/* ---------- bouton « Bientôt disponible » + retour du formulaire ---------- */
+.feature__cta--soon { cursor: default; opacity: .8; }
+.feature__cta--soon:hover { transform: none; }
+.contact__status { margin: .2rem 0 0; font-size: .92rem; color: var(--ink); }
+.contact__status--error { color: #ff8a7a; }
+.contact__form button[disabled] { opacity: .6; cursor: wait; }
+.contact__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

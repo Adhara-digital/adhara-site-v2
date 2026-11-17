@@ -34,7 +34,7 @@ export const CONTENT = {
       },
       partnersLabel: "À nos côtés",
       partners: ["Ministre de l'Environnement", "Les communes", "Intradel", "Fost Plus"],
-      store: "Voir sur le Play Store"
+      store: "Bientôt disponible"
     },
     // Fondateurs — histoires et photos encore provisoires.
     // photo : chemin d'une image dans public/ (ex. "/fondateur-1.jpg"), sinon les initiales s'affichent.
@@ -70,7 +70,7 @@ export const CONTENT = {
       // de coupure restant), jamais au milieu du mot.
       title: "Un projet ? Parlons‑en.",
       lead: "Écrivez-nous, on répond vite. C'est notre truc.",
-      fields: { name: "Votre nom", email: "Votre e-mail", message: "Votre message", send: "Envoyer" },
+      fields: { name: "Votre nom", email: "Votre e-mail", message: "Votre message", send: "Envoyer", sending: "Envoi…", sent: "Merci ! Votre message est bien parti, on vous répond vite.", error: "L’envoi a échoué. Écrivez-nous directement à l’adresse ci-dessus." },
       email: "adhara.information@gmail.com"
     },
     footer: { rights: "Tous droits réservés.", tagline: "Studio de création logicielle.", brand: "Charte graphique" }
@@ -104,7 +104,7 @@ export const CONTENT = {
       },
       partnersLabel: "Alongside us",
       partners: ["Minister for the Environment", "Local municipalities", "Intradel", "Fost Plus"],
-      store: "View on Play Store"
+      store: "Coming soon"
     },
     founders: {
       label: "The founders",
@@ -135,7 +135,7 @@ export const CONTENT = {
       label: "Contact",
       title: "Got a project? Let's talk.",
       lead: "Drop us a line, we reply fast. It's kind of our thing.",
-      fields: { name: "Your name", email: "Your email", message: "Your message", send: "Send" },
+      fields: { name: "Your name", email: "Your email", message: "Your message", send: "Send", sending: "Sending…", sent: "Thanks! Your message is on its way — we will get back to you soon.", error: "Sending failed. Please email us directly at the address above." },
       email: "adhara.information@gmail.com"
     },
     footer: { rights: "All rights reserved.", tagline: "Software creation studio.", brand: "Brand guidelines (FR)" }
