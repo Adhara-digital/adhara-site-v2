@@ -53,7 +53,8 @@ export default async function handler(req, res) {
   }
 
   const key = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO;
+  // nettoie les espaces / guillemets collés par erreur dans Vercel
+  const to = String(process.env.CONTACT_TO || "").trim().replace(/^["']|["']$/g, "").trim();
   if (!key || !to) {
     res.status(503).json({
       message: say(

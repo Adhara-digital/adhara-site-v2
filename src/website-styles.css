@@ -1015,3 +1015,8 @@ a.contact__email:hover {
 .contact__status--error { color: #ff8a7a; }
 .contact__form button[disabled] { opacity: .6; cursor: wait; }
 .contact__trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* ---------- téléphone : pas de lasers du logo (trop envahissants) ---------- */
+@media (max-width: 760px) {
+  .logotrail { display: none; }
+}
