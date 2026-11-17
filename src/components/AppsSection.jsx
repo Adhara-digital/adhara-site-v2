@@ -3,6 +3,8 @@ import { useLang } from "../content-and-translations.jsx";
 /* Proserpine, notre produit phare = le point rouge du logo (nœud S,
    relié au triangle des offres par LogoTrail). Autour : les organismes
    qui l'accompagnent, reliés au point par de fins rayons lumineux. */
+const SHOW_PARTNERS = false;
+
 export default function AppsSection() {
   const { t } = useLang();
   const a = t.apps.featured;
@@ -23,16 +25,22 @@ export default function AppsSection() {
             <h3>{a.name}</h3>
             <span className="feature__tag">{a.tag}</span>
           </div>
-          <svg className="feature__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="50" y1="50" x2="13" y2="8" />
-            <line x1="50" y1="50" x2="87" y2="8" />
-            <line x1="50" y1="50" x2="13" y2="92" />
-            <line x1="50" y1="50" x2="87" y2="92" />
-          </svg>
-          <p className="feature__partners-label">{t.apps.partnersLabel}</p>
-          {t.apps.partners.map((p, i) => (
-            <span className={`partner partner--${i + 1}`} key={i}>{p}</span>
-          ))}
+          {/* Partenaires masqués tant qu'ils ne sont pas officiels :
+              repasser SHOW_PARTNERS à true pour les réafficher. */}
+          {SHOW_PARTNERS && (
+            <>
+              <svg className="feature__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <line x1="50" y1="50" x2="13" y2="8" />
+                <line x1="50" y1="50" x2="87" y2="8" />
+                <line x1="50" y1="50" x2="13" y2="92" />
+                <line x1="50" y1="50" x2="87" y2="92" />
+              </svg>
+              <p className="feature__partners-label">{t.apps.partnersLabel}</p>
+              {t.apps.partners.map((p, i) => (
+                <span className={`partner partner--${i + 1}`} key={i}>{p}</span>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </section>
