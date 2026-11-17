@@ -5,11 +5,11 @@ import HeaderBar from "./components/HeaderBar.jsx";
 import WelcomeBanner from "./components/WelcomeBanner.jsx";
 import ServicesSection from "./components/ServicesSection.jsx";
 import AppsSection from "./components/AppsSection.jsx";
-import WhyChooseUsSection from "./components/WhyChooseUsSection.jsx";
-import KeyNumbersSection from "./components/KeyNumbersSection.jsx";
+import FoundersSection from "./components/FoundersSection.jsx";
 import AboutUsSection from "./components/AboutUsSection.jsx";
 import ContactFormSection from "./components/ContactFormSection.jsx";
 import FooterBar from "./components/FooterBar.jsx";
+import LogoTrail from "./components/LogoTrail.jsx";
 import "./website-styles.css";
 
 export default function Website() {
@@ -21,14 +21,14 @@ export default function Website() {
       <div className="bg-dim" aria-hidden="true" />
       <ScrollProgressBar />
       <HeaderBar />
-      <main>
+      <main className="has-logotrail">
         <WelcomeBanner />
         <ServicesSection />
         <AppsSection />
-        <WhyChooseUsSection />
-        <KeyNumbersSection />
         <AboutUsSection />
+        <FoundersSection />
         <ContactFormSection />
+        <LogoTrail />
       </main>
       <FooterBar />
     </>

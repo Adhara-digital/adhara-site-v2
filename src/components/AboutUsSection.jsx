@@ -13,8 +13,11 @@ export default function AboutUsSection() {
             <p className="about__p reveal" style={{ "--d": `${0.1 + i * 0.08}s` }} key={i}>{p}</p>
           ))}
         </div>
+        {/* 5e point du logo : l'embranchement (nœud J), relié à Proserpine */}
         <div className="about__mark reveal" aria-hidden="true">
-          <AboutNeuralOrb />
+          <div className="about__node" data-logo-node="J">
+            <AboutNeuralOrb />
+          </div>
         </div>
       </div>
     </section>

@@ -15,6 +15,7 @@ export default function FooterBar() {
           <a href="#apps">{t.nav.apps}</a>
           <a href="#about">{t.nav.about}</a>
           <a href="#contact">{t.nav.contact}</a>
+          <a href="/charte-graphique.html" target="_blank" rel="noopener">{t.footer.brand} ↗</a>
         </div>
         <p className="footer__copy">© {new Date().getFullYear()} Adhara. {t.footer.rights}</p>
       </div>

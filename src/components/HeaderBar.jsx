@@ -20,8 +20,8 @@ export default function HeaderBar() {
         <nav className="nav__links">
           <a href="#services">{t.nav.services}</a>
           <a href="#apps">{t.nav.apps}</a>
-          <a href="#why">{t.nav.why}</a>
           <a href="#about">{t.nav.about}</a>
+          <a href="#founders">{t.nav.founders}</a>
         </nav>
         <div className="nav__actions">
           <button className="langtoggle" onClick={toggle} aria-label="Changer de langue">

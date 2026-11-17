@@ -52,7 +52,15 @@ export default function AboutNeuralOrb() {
     const canvas = ref.current;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    // Sans WebGL (vieil appareil, accélération graphique coupée…), on
+    // renonce à la 3D au lieu de faire planter tout le site.
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    } catch (err) {
+      console.warn("WebGL indisponible : rendu 3D désactivé.", err);
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const scene = new THREE.Scene();

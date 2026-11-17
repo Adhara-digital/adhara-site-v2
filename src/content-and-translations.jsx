@@ -6,10 +6,10 @@ import { createContext, useContext, useEffect, useState } from "react";
    ============================================================ */
 export const CONTENT = {
   fr: {
-    nav: { services: "Services", apps: "Applications", why: "Pourquoi nous", about: "À propos", contact: "Contact", cta: "Nous contacter" },
+    nav: { services: "Services", apps: "Applications", about: "À propos", founders: "Fondateurs", contact: "Contact", cta: "Nous contacter" },
     hero: {
       eyebrow: "Studio high-tech · logiciels & applications",
-      title: ["Traversez l'entièreté de", "notre univers", "digital."],
+      title: ["On vous aide à", "toucher les étoiles."],
       // Slogan à définir plus tard — accroche provisoire
       lead: "Adhara est un jeune studio qui crée des logiciels et des applications mobiles pour le monde entier. De l'idée au Play Store, avec audace.",
       ctaPrimary: "Découvrir nos apps",
@@ -25,32 +25,34 @@ export const CONTENT = {
       ]
     },
     apps: {
-      label: "Nos applications",
-      title: "Déjà entre les mains\ndu monde entier.",
-      note: "Aperçus provisoires — vos vraies applications du Play Store viendront ici.",
-      cards: [
-        { name: "Proserpine", tag: "Écologie · Scan", desc: "Triez vos déchets en un scan.", rating: "4.8", installs: "45 k+" },
-        { name: "Workflow Studio", tag: "Automatisation", desc: "Automatisez vos solutions professionnelles.", rating: "4.7", installs: "38 k+" },
-        { name: "SportLife", tag: "Sport & bien-être", desc: "Dépensez-vous en vous amusant.", rating: "4.9", installs: "62 k+" }
-      ],
+      label: "Notre produit phare",
+      title: "Proserpine,\nnotre étoile.",
+      note: "Notre seule application disponible aujourd'hui — les suivantes sont en préparation.",
+      featured: {
+        name: "Proserpine", tag: "Écologie · Scan", logo: "/proserpine-app-logo.png",
+        desc: "Triez vos déchets en un scan : Proserpine reconnaît l'objet et vous indique la bonne poubelle."
+      },
+      partnersLabel: "À nos côtés",
+      partners: ["Ministre de l'Environnement", "Les communes", "Intradel", "Fost Plus"],
       store: "Voir sur le Play Store"
     },
-    why: {
-      label: "Pourquoi Adhara",
-      title: "Jeunes, rapides, sans compromis.",
-      items: [
-        { k: "01", name: "Jeunesse & dynamisme", desc: "Une équipe qui vit avec son temps, à l'affût des dernières technologies et tendances d'usage." },
-        { k: "02", name: "Portée internationale", desc: "Nos apps parlent à tout le monde. On pense multi-langues, multi-cultures, dès le premier écran." },
-        { k: "03", name: "Qualité produit", desc: "Du code propre, des interfaces soignées, des mises à jour régulières. La qualité n'est pas une option." }
+    // Fondateurs — histoires et photos encore provisoires.
+    // photo : chemin d'une image dans public/ (ex. "/fondateur-1.jpg"), sinon les initiales s'affichent.
+    founders: {
+      label: "Les fondateurs",
+      title: "Deux parcours,\nune même étoile.",
+      intro: "Adhara, c'est d'abord une histoire d'associés. Voici les deux personnes derrière le studio.",
+      people: [
+        { name: "Nicolas Scalais", role: "Cofondateur & co-CEO", title: "Directeur Marketing & Communication (CMO)", initials: "NS", photo: "", story: "Créer a toujours été mon moteur. Enfant, j'inventais des histoires ; adulte, je voulais porter un projet qui me ressemble : une entreprise dont je serais fier de parler, pas une de plus. Après une reconversion en infographie et en publicité, j'ai lancé ma boutique d'art digital. C'est pendant mes études que j'ai rencontré Maxime. Quand il m'a présenté son projet, je n'ai pas hésité une seconde." },
+        { name: "Maxime Cavallari", role: "Cofondateur & co-CEO", title: "Directeur Technique (CTO)", initials: "MC", photo: "", story: "L'histoire de ton associé ici : son parcours, sa rencontre avec toi, son rôle dans le studio." }
       ]
     },
     stats: {
       label: "En chiffres",
       items: [
-        { value: "140 k+", label: "Téléchargements" },
+        { value: "45 k+", label: "Téléchargements" },
         { value: "4.8", label: "Note moyenne" },
-        { value: "18+", label: "Pays touchés" },
-        { value: "3", label: "Apps publiées" }
+        { value: "1", label: "App publiée" }
       ]
     },
     about: {
@@ -71,14 +73,14 @@ export const CONTENT = {
       fields: { name: "Votre nom", email: "Votre e-mail", message: "Votre message", send: "Envoyer" },
       email: "adhara.information@gmail.com"
     },
-    footer: { rights: "Tous droits réservés.", tagline: "Studio de création logicielle." }
+    footer: { rights: "Tous droits réservés.", tagline: "Studio de création logicielle.", brand: "Charte graphique" }
   },
 
   en: {
-    nav: { services: "Services", apps: "Apps", why: "Why us", about: "About", contact: "Contact", cta: "Get in touch" },
+    nav: { services: "Services", apps: "Apps", about: "About", founders: "Founders", contact: "Contact", cta: "Get in touch" },
     hero: {
       eyebrow: "High-tech studio · software & apps",
-      title: ["Traverse the entirety", "of our digital", "universe."],
+      title: ["We help you", "reach for the stars."],
       lead: "Adhara is a young studio crafting software and mobile apps for the whole world. From idea to the Play Store, boldly.",
       ctaPrimary: "See our apps",
       ctaSecondary: "Start a project"
@@ -93,32 +95,32 @@ export const CONTENT = {
       ]
     },
     apps: {
-      label: "Our apps",
-      title: "Already in hands worldwide.",
-      note: "Placeholder previews — your real Play Store apps will live here.",
-      cards: [
-        { name: "Proserpine", tag: "Ecology · Scan", desc: "Sort your waste in a single scan.", rating: "4.8", installs: "45k+" },
-        { name: "Workflow Studio", tag: "Automation", desc: "Automate your business solutions.", rating: "4.7", installs: "38k+" },
-        { name: "SportLife", tag: "Fitness & wellness", desc: "Get moving while having fun.", rating: "4.9", installs: "62k+" }
-      ],
+      label: "Our flagship product",
+      title: "Proserpine,\nour star.",
+      note: "Our only app available today — the next ones are in the works.",
+      featured: {
+        name: "Proserpine", tag: "Ecology · Scan", logo: "/proserpine-app-logo.png",
+        desc: "Sort your waste in a single scan: Proserpine recognises the item and tells you which bin it goes in."
+      },
+      partnersLabel: "Alongside us",
+      partners: ["Minister for the Environment", "Local municipalities", "Intradel", "Fost Plus"],
       store: "View on Play Store"
     },
-    why: {
-      label: "Why Adhara",
-      title: "Young, fast, no compromise.",
-      items: [
-        { k: "01", name: "Youth & drive", desc: "A team that lives in the present, on top of the latest tech and the way people actually use it." },
-        { k: "02", name: "Global reach", desc: "Our apps speak to everyone. We think multi-language, multi-culture from the very first screen." },
-        { k: "03", name: "Product quality", desc: "Clean code, polished interfaces, regular updates. Quality is never optional." }
+    founders: {
+      label: "The founders",
+      title: "Two paths,\none star.",
+      intro: "Adhara starts as a story of partners. Meet the two people behind the studio.",
+      people: [
+        { name: "Nicolas Scalais", role: "Co-founder & Co-CEO", title: "Chief Marketing Officer (CMO)", initials: "NS", photo: "", story: "Creating has always driven me. As a kid, I made up stories; as an adult, I wanted to build something that truly felt like mine: a company I'd be proud to talk about, not just another one. After retraining in graphic design and advertising, I launched my own digital art shop. During my studies, I met Maxime. When he told me about his project, I didn't hesitate for a second." },
+        { name: "Maxime Cavallari", role: "Co-founder & Co-CEO", title: "Chief Technology Officer (CTO)", initials: "MC", photo: "", story: "Your partner's story here: their background, how you met, their role in the studio." }
       ]
     },
     stats: {
       label: "By the numbers",
       items: [
-        { value: "140k+", label: "Downloads" },
+        { value: "45k+", label: "Downloads" },
         { value: "4.8", label: "Avg. rating" },
-        { value: "18+", label: "Countries reached" },
-        { value: "3", label: "Apps shipped" }
+        { value: "1", label: "App shipped" }
       ]
     },
     about: {
@@ -136,7 +138,7 @@ export const CONTENT = {
       fields: { name: "Your name", email: "Your email", message: "Your message", send: "Send" },
       email: "adhara.information@gmail.com"
     },
-    footer: { rights: "All rights reserved.", tagline: "Software creation studio." }
+    footer: { rights: "All rights reserved.", tagline: "Software creation studio.", brand: "Brand guidelines (FR)" }
   }
 };
 

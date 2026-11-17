@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/browser-tab-icon.svg">
+<title>Charte graphique Adhara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Turret+Road:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: livre de marque en une page. Index collant en haut, chaque chapitre = intitulé + règle + exemples sur scène sombre.
+   Les valeurs --b-* sont les couleurs de la marque (fixes). Les autres jetons habillent la page et suivent le thème du lecteur. */
+:root {
+  --bg: #0a0a0d;
+  --bg2: #0e0e13;
+  --surface: #15151c;
+  --surface2: #1c1c25;
+  --line: rgba(255, 255, 255, 0.09);
+  --ink: #f4f4f7;
+  --dim: #a2a2b4;
+  --faint: #8d8da3;
+  --accent: #8f1717;
+  --accent-hot: #c7302a;
+  --accent-text: #e0473a;
+  --grad: linear-gradient(100deg, #8f1717, #c7302a);
+
+  --b-bg: #0a0a0d;
+  --b-bg2: #0e0e13;
+  --b-surface: #15151c;
+  --b-surface2: #1c1c25;
+  --b-ink: #f4f4f7;
+  --b-dim: #a2a2b4;
+  --b-faint: #64647a;
+  --b-red: #8f1717;
+  --b-deep: #5e0e0e;
+  --b-hot: #c7302a;
+  --b-star: #e0473a;
+  --b-glint: #ffe2dc;
+  --b-line: rgba(255, 255, 255, 0.08);
+  --b-grad: linear-gradient(100deg, #8f1717, #c7302a);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --f-display: "Space Grotesk", system-ui, sans-serif;
+  --f-body: "Inter", system-ui, sans-serif;
+  --f-mark: "Turret Road", "Space Grotesk", sans-serif;
+  --f-mono: ui-monospace, "SF Mono", Consolas, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f8f5f5;
+    --bg2: #f1eded;
+    --surface: #ffffff;
+    --surface2: #f4efef;
+    --line: rgba(26, 17, 20, 0.12);
+    --ink: #1a1114;
+    --dim: #5d5258;
+    --faint: #6f6469;
+    --accent: #8f1717;
+    --accent-hot: #c7302a;
+    --accent-text: #8f1717;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f8f5f5;
+  --bg2: #f1eded;
+  --surface: #ffffff;
+  --surface2: #f4efef;
+  --line: rgba(26, 17, 20, 0.12);
+  --ink: #1a1114;
+  --dim: #5d5258;
+  --faint: #6f6469;
+  --accent: #8f1717;
+  --accent-hot: #c7302a;
+  --accent-text: #8f1717;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-inline: 1.25rem;
+  overflow-x: hidden;
+}
+a { color: inherit; }
+h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.08; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+code, .mono { font-family: var(--f-mono); font-size: 0.86em; }
+:focus-visible { outline: 2px solid var(--accent-hot); outline-offset: 3px; }
+
+.wrap { max-width: 1160px; margin-inline: auto; }
+
+/* ---------- barre d'index ---------- */
+.topbar {
+  position: relative;
+  z-index: 20;
+  margin-inline: -1.25rem;
+  padding-inline: 1.25rem;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar__in { max-width: 1160px; margin-inline: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.5rem; min-height: 56px; padding-block: 0.6rem; }
+@media (min-width: 1000px) {
+  .topbar { position: sticky; top: env(safe-area-inset-top, 0px); }
+  .topbar__in { flex-wrap: nowrap; padding-block: 0; height: 56px; }
+}
+.topbar nav { display: flex; flex-wrap: wrap; gap: 0.2rem 1.4rem; min-width: 0; flex: 1 1 320px; justify-content: flex-end; }
+.topbar nav a { font-size: 0.86rem; color: var(--dim); text-decoration: none; white-space: nowrap; padding-block: 0.3rem; transition: color 0.3s var(--ease); }
+.topbar nav a:hover { color: var(--ink); }
+
+/* ---------- logo ---------- */
+.lockup { --h: 34px; display: inline-flex; align-items: center; gap: calc(var(--h) * 0.235); height: var(--h); color: #fff; flex: 0 0 auto; }
+.lockup .mark { height: 100%; width: auto; aspect-ratio: 1; display: block; flex: 0 0 auto; }
+.wm { font-family: var(--f-mark); font-weight: 800; letter-spacing: 0.03em; font-size: calc(var(--h) * 0.62); line-height: 1; color: var(--b-red); white-space: nowrap; }
+.mark { color: #fff; display: block; }
+.mark--lit { filter: drop-shadow(0 0 calc(var(--h, 40px) * 0.18) rgba(199, 48, 42, 0.45)); }
+.topbar .lockup .mark { color: var(--ink); --node: var(--bg); }
+.topbar .wm { color: var(--accent-text); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2rem, 5vw, 3.5rem); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.hero h1 { font-size: clamp(2.4rem, 6.4vw, 4.6rem); margin-top: 1rem; }
+.hero .lead { margin-top: 1.4rem; max-width: 46ch; }
+.hero__legend { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; font-size: 0.86rem; color: var(--dim); align-items: center; }
+.hero__stage { aspect-ratio: 1 / 0.82; max-width: 100%; border-radius: 22px; position: relative; overflow: hidden; display: grid; place-items: center; background: var(--b-bg); border: 1px solid var(--line); isolation: isolate; }
+.hero__stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(70% 60% at 85% -5%, rgba(143, 23, 23, 0.4), transparent 62%), radial-gradient(60% 60% at 5% 100%, rgba(94, 14, 14, 0.35), transparent 60%); }
+.hero__stage .lockup { --h: 92px; }
+@media (max-width: 560px) { .hero__stage .lockup { --h: 52px; } }
+.hero__meta { position: absolute; left: 1.1rem; bottom: 0.9rem; right: 1.1rem; display: flex; justify-content: space-between; gap: 1rem; font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--b-faint); }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--f-display); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-text); }
+.eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--grad); flex: 0 0 auto; }
+.lead { font-size: clamp(1.05rem, 1.7vw, 1.25rem); font-weight: 300; color: var(--dim); max-width: 58ch; }
+
+.tag { display: inline-block; font-family: var(--f-display); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.18rem 0.55rem; border-radius: 100px; border: 1px solid var(--line); color: var(--dim); vertical-align: middle; white-space: nowrap; }
+.tag--site { color: var(--accent-text); border-color: color-mix(in srgb, var(--accent-hot) 55%, transparent); }
+
+/* ---------- chapitres ---------- */
+.sec { padding-block: clamp(3rem, 7vw, 5.5rem); border-top: 1px solid var(--line); }
+.sec__head { display: grid; gap: 1rem; margin-bottom: clamp(1.8rem, 4vw, 3rem); }
+.sec__head h2 { font-size: clamp(1.8rem, 4vw, 2.9rem); max-width: 22ch; }
+.sub { font-size: 1.15rem; margin-bottom: 1rem; }
+.stack { display: grid; gap: clamp(2rem, 4vw, 3.2rem); }
+.grid { display: grid; gap: 1.2rem; }
+.g2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.g4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.grid > * { min-width: 0; }
+.note { font-size: 0.92rem; color: var(--dim); max-width: 70ch; }
+.note b { color: var(--ink); font-weight: 600; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem 1.4rem; display: grid; gap: 0.6rem; align-content: start; }
+.card h3 { font-size: 1.2rem; }
+.card p { font-size: 0.94rem; color: var(--dim); font-weight: 300; }
+.card .k { font-family: var(--f-display); font-weight: 700; font-size: 0.95rem; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.facts > div { background: var(--surface); padding: 1.1rem 1.2rem; display: grid; gap: 0.2rem; }
+.facts dt { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); }
+.facts dd { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 1.05rem; overflow-wrap: anywhere; }
+.facts dd small { display: block; font-family: var(--f-body); font-weight: 400; font-size: 0.82rem; color: var(--dim); margin-top: 0.15rem; }
+dl.facts { margin: 0; }
+
+/* ---------- scène sombre (exemples) ---------- */
+.stage { background: var(--b-bg); color: var(--b-ink); border-radius: 18px; border: 1px solid var(--line); padding: clamp(1.2rem, 3vw, 2rem); position: relative; isolation: isolate; overflow: hidden; }
+.stage--aura::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(520px 340px at 85% -10%, rgba(143, 23, 23, 0.34), transparent 62%), radial-gradient(420px 420px at 5% 25%, rgba(94, 14, 14, 0.26), transparent 60%); }
+.cap { font-size: 0.8rem; color: var(--faint); margin-top: 0.7rem; }
+.cap b { color: var(--dim); font-weight: 600; }
+
+/* ---------- logo ---------- */
+.lg { border-radius: 18px; border: 1px solid var(--line); overflow: hidden; display: grid; grid-template-rows: 1fr auto; background: var(--surface); }
+.lg__stage { display: grid; place-items: center; padding: 2.2rem 1rem; min-height: 190px; }
+.lg__info { padding: 0.85rem 1.1rem 1rem; border-top: 1px solid var(--line); display: grid; gap: 0.15rem; }
+.lg__info b { font-family: var(--f-display); font-weight: 600; font-size: 0.95rem; }
+.lg__info span { font-size: 0.82rem; color: var(--dim); }
+.bg-dark { background: var(--b-bg); --node: #0a0a0d; }
+.bg-light { background: #f8f5f5; --node: #f8f5f5; }
+.bg-light .mark, .bg-light .lockup { color: #0a0a0d; }
+.bg-red { background: var(--b-red); --node: #8f1717; }
+.bg-red .wm, .bg-red .mark, .bg-red .lockup { color: #fff; }
+.bg-grey { background: #d6d1d1; --node: #d6d1d1; }
+.bg-grey .wm, .bg-grey .mark, .bg-grey .lockup { color: #0a0a0d; }
+.flat { --star: #c7302a; --glint: transparent; }
+.monochrome { --star: currentColor; --glint: transparent; }
+.crop { width: 150px; height: 150px; border-radius: 50%; background: var(--b-bg); display: grid; place-items: center; border: 1px solid var(--b-line); }
+
+.parts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 1.2rem; }
+.part { display: grid; gap: 0.7rem; justify-items: start; }
+.part .stage { width: 100%; display: grid; place-items: center; padding: 1.6rem; }
+.part h4 { font-size: 1rem; }
+.part p { font-size: 0.88rem; color: var(--dim); }
+
+.clear { display: grid; place-items: center; padding: 2.4rem 1rem; background: var(--b-bg); border-radius: 18px; border: 1px solid var(--line); --node: #0a0a0d; }
+.clear__box { --ch: 110px; --h: var(--ch); --x: calc(var(--h) * 22 / 190 * 2); padding: var(--x); outline: 1.5px dashed rgba(224, 71, 58, 0.8); position: relative; display: inline-block; }
+.clear__box::after { content: "2 × Ø étoile"; position: absolute; top: 4px; left: 6px; font-size: 0.64rem; letter-spacing: 0.06em; color: rgba(224, 71, 58, 0.95); text-transform: uppercase; }
+.clear__box .lockup { --h: var(--ch); height: var(--h); }
+@media (max-width: 560px) { .clear__box { --ch: 58px; } }
+
+.nots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 1.2rem; }
+.not { border-radius: 14px; border: 1px solid var(--line); overflow: hidden; background: var(--surface); }
+.not__stage { background: var(--b-bg); --node: #0a0a0d; height: 130px; display: grid; place-items: center; overflow: hidden; position: relative; }
+.not__stage::after { content: "×"; position: absolute; top: 6px; right: 10px; font-family: var(--f-display); font-size: 1.5rem; line-height: 1; color: var(--b-star); }
+.not p { padding: 0.7rem 0.9rem 0.85rem; font-size: 0.85rem; color: var(--dim); border-top: 1px solid var(--line); }
+
+/* ---------- couleurs ---------- */
+.sw { all: unset; box-sizing: border-box; cursor: pointer; display: grid; grid-template-rows: 110px auto; border-radius: 16px; border: 1px solid var(--line); overflow: hidden; background: var(--surface); transition: transform 0.4s var(--ease), border-color 0.4s var(--ease); }
+.sw:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent-hot) 60%, transparent); }
+.sw:focus-visible { outline: 2px solid var(--accent-hot); outline-offset: 3px; }
+.sw__chip { background: var(--c); color: var(--t); padding: 0.7rem 0.9rem; display: flex; align-items: flex-end; justify-content: space-between; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--line); }
+.sw__body { padding: 0.8rem 0.95rem 0.95rem; display: grid; gap: 0.15rem; }
+.sw__body b { font-family: var(--f-display); font-weight: 600; font-size: 1rem; }
+.sw__body .mono { color: var(--dim); }
+.sw__body small { color: var(--faint); font-size: 0.78rem; line-height: 1.4; margin-top: 0.2rem; }
+.sw__grad { background: var(--b-grad); }
+.palette-label { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.7rem; }
+
+.bar { display: flex; height: 54px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+.bar > span { display: block; min-width: 0; }
+.bar-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-size: 0.82rem; color: var(--dim); margin-top: 0.8rem; }
+.bar-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 0.45rem; border: 1px solid var(--line); }
+
+.list { display: grid; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden; }
+.list__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem 1rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--line); font-size: 0.92rem; }
+.list__row:last-child { border-bottom: 0; }
+.list__name { display: flex; align-items: center; gap: 0.5rem; min-width: 0; font-weight: 600; font-family: var(--f-display); }
+.list__val { font-variant-numeric: tabular-nums; color: var(--dim); font-size: 0.88rem; white-space: nowrap; }
+.list__end { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; }
+.list__desc { flex-basis: 100%; font-size: 0.86rem; color: var(--dim); }
+.sizes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 1.6rem 1.2rem; align-items: end; }
+.size { display: grid; gap: 0.5rem; justify-items: start; align-content: end; min-width: 0; }
+.size__vis { height: 40px; display: flex; align-items: center; }
+.size b { font-family: var(--f-display); font-size: 0.98rem; font-weight: 600; }
+.size span.size__txt { font-size: 0.84rem; color: var(--b-dim); line-height: 1.45; }
+.fav { width: 32px; height: 32px; border-radius: 8px; background: var(--b-bg); border: 1px solid var(--b-line); display: grid; place-items: center; }
+.pill { display: inline-block; font-size: 0.74rem; font-weight: 600; padding: 0.12rem 0.6rem; border-radius: 100px; font-variant-numeric: tabular-nums; }
+.ok { background: rgba(58, 168, 107, 0.16); color: #2f9a63; }
+.mid { background: rgba(224, 160, 40, 0.18); color: #b9801a; }
+.low { background: rgba(224, 71, 58, 0.16); color: var(--accent-text); }
+:root[data-theme="dark"] .ok { color: #5fd08e; }
+:root[data-theme="dark"] .mid { color: #e8b04a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ok { color: #5fd08e; } :root:not([data-theme="light"]) .mid { color: #e8b04a; } }
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: -1px; margin-right: 0.5rem; border: 1px solid var(--line); }
+
+.pair { border-radius: 14px; padding: 1rem 1.1rem; display: grid; gap: 0.2rem; border: 1px solid var(--line); background: var(--b-bg); color: var(--b-ink); }
+.pair b { font-family: var(--f-display); font-size: 1.15rem; font-weight: 700; }
+.pair span { font-size: 0.78rem; opacity: 0.9; }
+
+/* ---------- typographie ---------- */
+.fam { display: grid; gap: 0.9rem; }
+.fam .stage { display: grid; gap: 0.8rem; align-content: start; min-height: 230px; }
+.fam .glyph { font-size: clamp(3.4rem, 9vw, 5.4rem); line-height: 1; }
+.fam .alpha { font-size: 1.02rem; letter-spacing: 0.02em; color: var(--b-dim); overflow-wrap: anywhere; }
+.fam__role { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--b-faint); }
+.spec-t { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+.scale { display: grid; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--b-bg); color: var(--b-ink); }
+.scale__row { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 1.4rem; padding: 1.1rem 1.4rem; border-bottom: 1px solid var(--b-line); align-items: baseline; }
+.scale__row:last-child { border-bottom: 0; }
+.scale__row .meta { font-size: 0.78rem; color: var(--b-faint); line-height: 1.5; }
+.scale__row .meta b { display: block; color: var(--b-dim); font-weight: 600; font-size: 0.82rem; }
+.scale__row .sample { min-width: 0; overflow-wrap: anywhere; }
+.s-hero { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; font-size: clamp(2.2rem, 6vw, 4rem); }
+.s-sec { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; font-size: clamp(1.7rem, 4vw, 2.6rem); }
+.s-h3 { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; font-size: 1.35rem; }
+.s-num { font-family: var(--f-display); font-weight: 700; line-height: 1; font-size: clamp(2rem, 4vw, 2.8rem); background: var(--b-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.s-lead { font-weight: 300; font-size: 1.2rem; color: var(--b-dim); }
+.s-body { font-weight: 300; font-size: 0.96rem; color: var(--b-dim); max-width: 52ch; }
+.s-eye { font-family: var(--f-display); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--b-star); }
+.s-btn { font-weight: 600; font-size: 0.95rem; }
+.s-tag { font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--b-faint); }
+
+/* ---------- mise en page ---------- */
+.radii { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 1rem; }
+.radius { display: grid; gap: 0.6rem; }
+.radius > div { height: 76px; background: var(--b-surface); border: 1px solid var(--b-line); }
+.radius b { font-family: var(--f-display); font-size: 0.95rem; font-weight: 600; }
+.radius span { font-size: 0.8rem; color: var(--dim); display: block; line-height: 1.4; }
+.gridviz { display: grid; gap: 0.7rem; }
+.gridviz__bar { height: 78px; border: 1px dashed rgba(224, 71, 58, 0.6); border-radius: 12px; padding-inline: 14px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; background: var(--b-bg); }
+.gridviz__bar i { background: rgba(143, 23, 23, 0.28); margin-block: 10px; border-radius: 4px; }
+
+/* ---------- composants (scène sombre) ---------- */
+.btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.85rem 1.5rem; border-radius: 100px; font-family: var(--f-body); font-weight: 600; font-size: 0.95rem; border: 1px solid transparent; color: #fff; text-decoration: none; cursor: pointer; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease); }
+.btn--primary { background: var(--b-grad); box-shadow: 0 8px 30px rgba(143, 23, 23, 0.45); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(199, 48, 42, 0.55); }
+.btn--ghost { border-color: var(--b-line); background: rgba(255, 255, 255, 0.02); color: var(--b-ink); }
+.btn--ghost:hover { border-color: var(--b-red); transform: translateY(-2px); }
+.row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.comp { display: grid; gap: 1.6rem; }
+.comp .eyebrow { color: var(--b-star); }
+.c-card { padding: 1.7rem 1.5rem; border: 1px solid var(--b-line); border-radius: 18px; background: var(--b-surface); transition: transform 0.4s var(--ease), border-color 0.4s var(--ease); }
+.c-card:hover { transform: translateY(-6px); border-color: rgba(199, 48, 42, 0.55); }
+.c-card .ic { color: var(--b-red); font-size: 1.3rem; }
+.c-card h3 { font-size: 1.25rem; margin: 0.9rem 0 0.5rem; color: var(--b-ink); }
+.c-card p { font-size: 0.94rem; font-weight: 300; color: var(--b-dim); }
+.c-stat { text-align: center; padding: 1.4rem 1rem; border: 1px solid var(--b-line); border-radius: 18px; background: var(--b-surface); }
+.c-stat b { display: block; font-family: var(--f-display); font-weight: 700; font-size: 2.6rem; line-height: 1; background: var(--b-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.c-stat span { display: block; margin-top: 0.6rem; font-size: 0.9rem; color: var(--b-dim); }
+.c-field { background: var(--b-surface); border: 1px solid var(--b-line); border-radius: 12px; padding: 0.9rem 1rem; color: var(--b-ink); font-family: var(--f-body); font-size: 0.96rem; width: 100%; max-width: 100%; transition: border-color 0.3s; }
+.c-field:focus { outline: none; border-color: var(--b-red); }
+.c-field::placeholder { color: var(--b-faint); }
+.c-toggle { background: none; border: 1px solid var(--b-line); border-radius: 100px; padding: 0.4rem 0.7rem; color: var(--b-faint); font-family: var(--f-body); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; display: inline-flex; gap: 0.3rem; cursor: pointer; transition: border-color 0.3s; }
+.c-toggle:hover { border-color: var(--b-red); }
+.c-toggle .on { color: var(--b-star); }
+.c-app { display: flex; gap: 1rem; align-items: center; padding: 1rem 1.1rem; border: 1px solid var(--b-line); border-radius: 18px; background: var(--b-surface); }
+.c-app .icon { width: 52px; height: 52px; border-radius: 14px; background: var(--b-grad); display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; font-size: 1.4rem; color: #fff; flex: 0 0 auto; }
+.c-app .icon--round { border-radius: 50%; background: var(--b-bg); border: 1px solid var(--b-line); --node: #0a0a0d; }
+.c-app b { font-family: var(--f-display); font-size: 1.05rem; display: block; }
+
+/* ---------- fonds & mouvement ---------- */
+.fx { height: 190px; border-radius: 16px; border: 1px solid var(--line); position: relative; overflow: hidden; background: var(--b-bg); }
+.fx--aura { background: radial-gradient(260px 170px at 80% -5%, rgba(143, 23, 23, 0.55), transparent 62%), radial-gradient(200px 200px at 8% 22%, rgba(94, 14, 14, 0.45), transparent 60%), radial-gradient(300px 190px at 50% 112%, rgba(130, 18, 18, 0.4), transparent 62%), var(--b-bg); }
+.fx--stars { background:
+  radial-gradient(1.5px 1.5px at 12% 22%, #fff, transparent), radial-gradient(1px 1px at 28% 68%, #fff, transparent),
+  radial-gradient(1.5px 1.5px at 41% 18%, #ffe2dc, transparent), radial-gradient(1px 1px at 55% 80%, #fff, transparent),
+  radial-gradient(2px 2px at 66% 34%, #fff, transparent), radial-gradient(1px 1px at 78% 62%, #ffe2dc, transparent),
+  radial-gradient(1.5px 1.5px at 88% 20%, #fff, transparent), radial-gradient(1px 1px at 20% 90%, #fff, transparent),
+  radial-gradient(1px 1px at 92% 85%, #fff, transparent), radial-gradient(2.5px 2.5px at 74% 48%, #e0473a, transparent), var(--b-bg); }
+.fx--warp { background: radial-gradient(120% 90% at 50% 50%, transparent 38%, rgba(143, 23, 23, 0.28) 78%, rgba(10, 4, 6, 0.62) 100%), var(--b-bg2); }
+.fx--rail { background: var(--b-bg); }
+.fx--rail::before { content: ""; position: absolute; top: 14px; bottom: 14px; right: 36px; width: 2px; background: rgba(255, 255, 255, 0.08); }
+.fx--rail::after { content: ""; position: absolute; top: 46px; right: 36px; width: 2px; height: 64px; border-radius: 2px; background: linear-gradient(180deg, #8f1717, #c7302a); box-shadow: 0 0 8px rgba(199, 48, 42, 0.6); }
+.fxlabel { display: grid; gap: 0.15rem; margin-top: 0.7rem; }
+.fxlabel b { font-family: var(--f-display); font-size: 0.98rem; font-weight: 600; }
+.fxlabel span { font-size: 0.84rem; color: var(--dim); }
+.reveal-demo { display: grid; gap: 1rem; justify-items: start; }
+.reveal-box { padding: 1.2rem 1.4rem; border: 1px solid var(--b-line); border-radius: 18px; background: var(--b-surface); max-width: 420px; opacity: 1; transform: none; filter: blur(0); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease); }
+.reveal-box.out { opacity: 0; transform: translateY(28px); filter: blur(10px); transition: none; }
+.reveal-box b { font-family: var(--f-display); display: block; font-size: 1.1rem; color: var(--b-ink); }
+.reveal-box span { font-size: 0.92rem; font-weight: 300; color: var(--b-dim); }
+
+/* ---------- voix ---------- */
+.say { display: grid; gap: 0.5rem; padding: 1.1rem 1.2rem; border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
+.say q { font-family: var(--f-display); font-weight: 600; font-size: 1.15rem; line-height: 1.25; quotes: none; }
+.say small { color: var(--faint); font-size: 0.8rem; }
+.say--no q { color: var(--dim); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--accent-hot) 70%, transparent); text-decoration-thickness: 1.5px; }
+.rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+.rules li { display: grid; grid-template-columns: 1.2rem minmax(0, 1fr); gap: 0.7rem; font-size: 0.95rem; color: var(--dim); }
+.rules li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-hot); margin-top: 0.55rem; }
+.rules li b { color: var(--ink); font-weight: 600; }
+
+/* ---------- points d'attention ---------- */
+.flag { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.1rem; padding: 1.2rem 1.3rem; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.flag__n { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; font-size: 0.9rem; background: var(--surface2); border: 1px solid var(--line); color: var(--accent-text); font-variant-numeric: tabular-nums; }
+.flag h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+.flag p { font-size: 0.92rem; color: var(--dim); }
+.flag p + p { margin-top: 0.4rem; }
+.flag p b { color: var(--ink); font-weight: 600; }
+
+footer { padding-block: 2.5rem 3.5rem; border-top: 1px solid var(--line); color: var(--faint); font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; justify-content: space-between; }
+
+.toast { position: fixed; left: 50%; bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); background: var(--ink); color: var(--bg); padding: 0.55rem 1rem; border-radius: 100px; font-size: 0.85rem; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease), transform 0.3s var(--ease); z-index: 40; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .scale__row { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+.dl { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.5rem 1.05rem; border-radius: 100px; background: linear-gradient(100deg, #8f1717, #c7302a); color: #fff; font-family: var(--f-body); font-weight: 600; font-size: 0.84rem; text-decoration: none; box-shadow: 0 6px 22px rgba(143, 23, 23, 0.4); transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+.dl:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(199, 48, 42, 0.5); }
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="a-ring" viewBox="0 0 190 190">
+      <circle cx="95" cy="95" r="84" fill="none" stroke="currentColor" stroke-width="4"/>
+    </symbol>
+    <symbol id="a-net" viewBox="0 0 190 190">
+      <g stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none">
+        <line x1="87" y1="30" x2="50" y2="61"/>
+        <line x1="87" y1="30" x2="66" y2="78"/>
+        <line x1="50" y1="61" x2="66" y2="78"/>
+        <line x1="66" y1="78" x2="95" y2="89"/>
+        <line x1="95" y1="89" x2="104" y2="120"/>
+        <line x1="104" y1="120" x2="143" y2="122"/>
+        <line x1="104" y1="120" x2="95" y2="159"/>
+      </g>
+      <g stroke="currentColor" stroke-width="4" style="fill:var(--node,#0a0a0d)">
+        <circle cx="87" cy="30" r="5.3"/>
+        <circle cx="50" cy="61" r="4.4"/>
+        <circle cx="66" cy="78" r="3.5"/>
+        <circle cx="104" cy="120" r="3.5"/>
+        <circle cx="143" cy="122" r="4.4"/>
+        <circle cx="95" cy="159" r="3.5"/>
+      </g>
+    </symbol>
+    <symbol id="a-star" viewBox="0 0 190 190">
+      <circle cx="95" cy="89" r="11" style="fill:var(--star,#e0473a)"/>
+      <circle cx="91.5" cy="85.5" r="3.4" style="fill:var(--glint,#ffe2dc)"/>
+    </symbol>
+    <symbol id="a-mark" viewBox="0 0 190 190">
+      <use href="#a-ring"/><use href="#a-net"/><use href="#a-star"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <div class="topbar__in">
+    <span class="lockup" style="--h:28px" aria-label="Adhara"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span>
+    <nav aria-label="Chapitres">
+      <a href="#essence">Essence</a>
+      <a href="#logo">Logo</a>
+      <a href="#couleurs">Couleurs</a>
+      <a href="#typo">Typographie</a>
+      <a href="#mise-en-page">Mise en page</a>
+      <a href="#composants">Composants</a>
+      <a href="#fonds">Fonds &amp; mouvement</a>
+      <a href="#voix">Voix</a>
+      <a href="#attention">Points d'attention</a>
+    </nav>
+    <a class="dl" href="/charte-graphique-adhara.pdf" download="Charte-graphique-Adhara.pdf">Télécharger le PDF ↓</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Charte graphique · Version 1.0</span>
+      <h1>Adhara, la marque en une page.</h1>
+      <p class="lead">Logo, couleurs, typographie, composants, mouvement et ton. Chaque valeur a été relevée dans le code du site, puis complétée par des règles d'usage pour les supports qui n'existent pas encore.</p>
+      <div class="hero__legend">
+        <span><span class="tag tag--site">Site</span>&nbsp; valeur lue dans le code</span>
+        <span><span class="tag">Reco</span>&nbsp; règle ajoutée par cette charte</span>
+      </div>
+    </div>
+    <div class="hero__stage" style="--node:#0a0a0d">
+      <span class="lockup"><svg class="mark mark--lit" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span>
+      <div class="hero__meta"><span>Studio logiciel</span><span>ε Canis Majoris</span></div>
+    </div>
+  </section>
+
+  <!-- ===================== ESSENCE ===================== -->
+  <section class="sec" id="essence">
+    <div class="sec__head">
+      <span class="eyebrow">Essence</span>
+      <h2>Un studio jeune, qui vise haut et livre vite.</h2>
+      <p class="lead">Adhara crée des logiciels et des applications mobiles pour un public international, du premier croquis jusqu'au Play Store. Le nom est celui d'une étoile du Grand Chien, et le logo en dessine la constellation.</p>
+    </div>
+    <div class="stack">
+      <div class="grid g3">
+        <div class="card"><span class="k">Jeunesse &amp; dynamisme</span><h3>Dans son temps</h3><p>Une équipe à l'affût des technologies et des usages. L'interface est sombre, nette, et réagit au toucher.</p></div>
+        <div class="card"><span class="k">Portée internationale</span><h3>Pensée pour tous</h3><p>Chaque écran existe en français et en anglais dès le départ. Les symboles et les chiffres parlent sans traduction.</p></div>
+        <div class="card"><span class="k">Qualité produit</span><h3>Sans compromis</h3><p>Des détails soignés, des animations sobres, un rouge employé avec parcimonie pour que chaque accent compte.</p></div>
+      </div>
+      <dl class="facts">
+        <div><dt>Positionnement</dt><dd>Studio de création logicielle<small>Applications, logiciels, sites, branding</small></dd></div>
+        <div><dt>Public</dt><dd>B2C, international<small>Applications publiées sur Google Play</small></dd></div>
+        <div><dt>Personnalité</dt><dd>Jeune · dynamique · audacieux</dd></div>
+        <div><dt>Symbole</dt><dd>Constellation + étoile rouge<small>Adhara, ε du Grand Chien</small></dd></div>
+        <div><dt>Slogan</dt><dd>À définir<small>Accroche provisoire dans le hero du site</small></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===================== LOGO ===================== -->
+  <section class="sec" id="logo">
+    <div class="sec__head">
+      <span class="eyebrow">Logo</span>
+      <h2>Un anneau, un réseau, une étoile rouge.</h2>
+      <p class="lead">Le symbole se lit comme une carte du ciel. Le réseau de points relie la constellation, l'anneau l'enferme, et l'étoile Adhara en est le seul élément coloré.</p>
+    </div>
+    <div class="stack">
+
+      <div>
+        <h3 class="sub">Anatomie</h3>
+        <div class="parts">
+          <div class="part"><div class="stage" style="--node:#0a0a0d"><svg class="mark" style="width:104px;height:104px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-ring"/></svg></div><h4>L'anneau</h4><p>Cercle blanc, trait de 4 sur 190. Il cadre le symbole et le rend lisible en petit.</p></div>
+          <div class="part"><div class="stage" style="--node:#0a0a0d"><svg class="mark" style="width:104px;height:104px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-net"/></svg></div><h4>Le réseau</h4><p>Sept liens et six nœuds creux. Les nœuds prennent la couleur du fond pour trouer les traits.</p></div>
+          <div class="part"><div class="stage" style="--node:#0a0a0d"><svg class="mark mark--lit" style="width:104px;height:104px;--h:104px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-star"/></svg></div><h4>L'étoile</h4><p>Le nœud central, le plus grand. Seul point rouge du logo, avec un petit reflet clair en haut à gauche.</p></div>
+        </div>
+        <p class="cap"><b>Source</b> · composant <code>AdharaLogoIcon.jsx</code>, positions relevées sur le logo d'origine. <span class="tag tag--site">Site</span></p>
+      </div>
+
+      <div>
+        <h3 class="sub">Versions</h3>
+        <div class="grid g3">
+          <div class="lg"><div class="lg__stage bg-dark"><span class="lockup" style="--h:56px"><svg class="mark mark--lit" style="--h:56px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><div class="lg__info"><b>Sombre, lumineuse</b><span>Version écran par défaut : étoile #E0473A avec lueur.</span></div></div>
+          <div class="lg"><div class="lg__stage bg-dark flat"><span class="lockup" style="--h:56px"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><div class="lg__info"><b>Sombre, plate</b><span>Impression, vidéo, réseaux : étoile #C7302A sans lueur.</span></div></div>
+          <div class="lg"><div class="lg__stage bg-light flat"><span class="lockup" style="--h:56px"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><div class="lg__info"><b>Fond clair</b><span>Symbole noir #0A0A0D, mot-symbole rouge sang. Jamais de lueur.</span></div></div>
+          <div class="lg"><div class="lg__stage bg-red monochrome"><span class="lockup" style="--h:56px"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><div class="lg__info"><b>Monochrome blanc</b><span>Sur rouge sang, photo sombre ou aplat de couleur.</span></div></div>
+          <div class="lg"><div class="lg__stage bg-grey monochrome"><span class="lockup" style="--h:56px"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><div class="lg__info"><b>Monochrome noir</b><span>Tampons, fax, gravure, documents en noir et blanc.</span></div></div>
+          <div class="lg"><div class="lg__stage bg-dark flat"><div class="crop"><svg class="mark" style="width:112px;height:112px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg></div></div><div class="lg__info"><b>Symbole seul</b><span>Photo de profil et icône d'app : fond #0A0A0D, recadrage rond.</span></div></div>
+        </div>
+        <p class="cap"><b>Source</b> · le mot-symbole est écrit en Turret Road 800, capitales, espacement 0,03 em, couleur rouge sang. Les variantes plate, claire et monochrome sont des recommandations. <span class="tag">Reco</span></p>
+      </div>
+
+      <div class="grid g2">
+        <div>
+          <h3 class="sub">Zone de protection</h3>
+          <div class="clear" style="--node:#0a0a0d"><div class="clear__box"><span class="lockup"><svg class="mark mark--lit" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div></div>
+          <p class="cap">Laisser autour du logo un vide égal à deux fois le diamètre de l'étoile, soit environ 23 % de la hauteur du symbole. Aucun texte, bord de page ou image dans cette zone. <span class="tag">Reco</span></p>
+        </div>
+        <div>
+          <h3 class="sub">Tailles minimales</h3>
+          <div class="stage sizes" style="--node:#0a0a0d">
+            <div class="size"><div class="size__vis"><span class="lockup" style="--h:34px"><svg class="mark mark--lit" style="--h:34px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><b>Logo complet</b><span class="size__txt">34 px de haut à l'écran<br>12 mm en impression</span></div>
+            <div class="size"><div class="size__vis"><svg class="mark" style="width:28px;height:28px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg></div><b>Symbole seul</b><span class="size__txt">28 px à l'écran<br>9 mm en impression</span></div>
+            <div class="size"><div class="size__vis"><span class="fav"><svg class="mark" style="width:26px;height:26px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg></span></div><b>Favicon</b><span class="size__txt">Symbole seul<br>32 px</span></div>
+          </div>
+          <p class="cap">34 px correspond à la taille du logo dans la barre de navigation du site. <span class="tag tag--site">Site</span> En dessous, l'anneau et les nœuds s'épaississent et se touchent.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="sub">À ne pas faire</h3>
+        <div class="nots">
+          <div class="not"><div class="not__stage"><span class="lockup" style="--h:44px;transform:scaleX(1.55)"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><p>Étirer ou écraser les proportions.</p></div>
+          <div class="not"><div class="not__stage"><span class="lockup" style="--h:44px;--star:#3aa86b"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><p>Changer la couleur de l'étoile.</p></div>
+          <div class="not"><div class="not__stage"><span class="lockup" style="--h:44px;filter:drop-shadow(4px 4px 0 #7a7a8a)"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><p>Ajouter ombre portée ou contour.</p></div>
+          <div class="not"><div class="not__stage bg-grey"><span class="lockup" style="--h:44px;color:#fff;--node:#d6d1d1"><svg class="mark" style="color:#fff" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm" style="color:#fff">ADHARA</span></span></div><p>Poser le logo sur un fond sans contraste.</p></div>
+          <div class="not"><div class="not__stage"><span class="lockup" style="--h:44px;transform:rotate(-14deg)"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm">ADHARA</span></span></div><p>Incliner ou faire pivoter.</p></div>
+          <div class="not"><div class="not__stage"><span class="lockup" style="--h:44px"><svg class="mark" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg><span class="wm" style="font-family:Georgia,serif;font-weight:400;letter-spacing:0;text-transform:none;color:#8f1717">Adhara</span></span></div><p>Remplacer la police du mot-symbole.</p></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== COULEURS ===================== -->
+  <section class="sec" id="couleurs">
+    <div class="sec__head">
+      <span class="eyebrow">Couleurs</span>
+      <h2>La nuit, et un rouge qu'on dose.</h2>
+      <p class="lead">Des noirs légèrement bleutés, un blanc froid et une seule famille chromatique : le rouge. Cliquer sur une pastille copie sa valeur hexadécimale.</p>
+    </div>
+    <div class="stack">
+
+      <div>
+        <p class="palette-label">Fonds</p>
+        <div class="grid g4">
+          <button class="sw" data-hex="#0A0A0D" style="--c:#0A0A0D;--t:#f4f4f7"><span class="sw__chip"><span>Fond principal</span></span><span class="sw__body"><b>Nuit</b><span class="mono">#0A0A0D · 10 10 13</span><small>--bg · fond de page, scènes de logo, boutons de contraste.</small></span></button>
+          <button class="sw" data-hex="#0E0E13" style="--c:#0E0E13;--t:#f4f4f7"><span class="sw__chip"><span>Fond alterné</span></span><span class="sw__body"><b>Nuit relevée</b><span class="mono">#0E0E13 · 14 14 19</span><small>--bg-2 · sections alternées, fondu en haut et en bas.</small></span></button>
+          <button class="sw" data-hex="#15151C" style="--c:#15151C;--t:#f4f4f7"><span class="sw__chip"><span>Surface</span></span><span class="sw__body"><b>Surface</b><span class="mono">#15151C · 21 21 28</span><small>--surface · cartes, champs, tuiles de chiffres.</small></span></button>
+          <button class="sw" data-hex="#1C1C25" style="--c:#1C1C25;--t:#f4f4f7"><span class="sw__chip"><span>Surface haute</span></span><span class="sw__body"><b>Surface haute</b><span class="mono">#1C1C25 · 28 28 37</span><small>--surface-2 · éléments posés sur une carte.</small></span></button>
+        </div>
+      </div>
+
+      <div>
+        <p class="palette-label">Texte</p>
+        <div class="grid g4">
+          <button class="sw" data-hex="#F4F4F7" style="--c:#F4F4F7;--t:#0a0a0d"><span class="sw__chip"><span>Texte principal</span></span><span class="sw__body"><b>Blanc stellaire</b><span class="mono">#F4F4F7 · 244 244 247</span><small>--ink · titres, texte courant important.</small></span></button>
+          <button class="sw" data-hex="#A2A2B4" style="--c:#A2A2B4;--t:#0a0a0d"><span class="sw__chip"><span>Texte secondaire</span></span><span class="sw__body"><b>Gris brume</b><span class="mono">#A2A2B4 · 162 162 180</span><small>--ink-dim · chapôs, descriptions, liens de navigation.</small></span></button>
+          <button class="sw" data-hex="#64647A" style="--c:#64647A;--t:#f4f4f7"><span class="sw__chip"><span>Texte discret</span></span><span class="sw__body"><b>Gris ardoise</b><span class="mono">#64647A · 100 100 122</span><small>--ink-faint · placeholders, légendes, mentions légales.</small></span></button>
+          <div class="sw" style="cursor:default"><span class="sw__chip" style="background:rgba(255,255,255,0.08);color:#f4f4f7;background-color:#0a0a0d;background-image:linear-gradient(rgba(255,255,255,0.08),rgba(255,255,255,0.08))"><span>Filet</span></span><span class="sw__body"><b>Filet</b><span class="mono">rgba(255,255,255,0.08)</span><small>--line · bordures de cartes, séparateurs, champs.</small></span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="palette-label">Rouges</p>
+        <div class="grid g4">
+          <button class="sw" data-hex="#8F1717" style="--c:#8F1717;--t:#fff"><span class="sw__chip"><span>Signature</span></span><span class="sw__body"><b>Rouge sang</b><span class="mono">#8F1717 · 143 23 23</span><small>--red · mot-symbole, début du dégradé, aplats, bordures actives.</small></span></button>
+          <button class="sw" data-hex="#5E0E0E" style="--c:#5E0E0E;--t:#fff"><span class="sw__chip"><span>Profondeur</span></span><span class="sw__body"><b>Rouge profond</b><span class="mono">#5E0E0E · 94 14 14</span><small>--red-deep · ombres colorées, halos de fond.</small></span></button>
+          <button class="sw" data-hex="#C7302A" style="--c:#C7302A;--t:#fff"><span class="sw__chip"><span>Lumineux</span></span><span class="sw__body"><b>Rouge vif</b><span class="mono">#C7302A · 199 48 42</span><small>--red-hot · fin du dégradé, survols, lueurs, étoile (version plate).</small></span></button>
+          <button class="sw" data-hex="#E0473A" style="--c:#E0473A;--t:#0a0a0d"><span class="sw__chip"><span>Étoile</span></span><span class="sw__body"><b>Rouge étoile</b><span class="mono">#E0473A · 224 71 58</span><small>Cœur de l'étoile du logo à l'écran. Rouge conseillé pour le texte sur fond sombre.</small></span></button>
+          <button class="sw" data-hex="#FFE2DC" style="--c:#FFE2DC;--t:#0a0a0d"><span class="sw__chip"><span>Reflet</span></span><span class="sw__body"><b>Reflet</b><span class="mono">#FFE2DC · 255 226 220</span><small>Petit point clair sur l'étoile. Ne sert nulle part ailleurs.</small></span></button>
+          <button class="sw sw__grad-wrap" data-hex="linear-gradient(100deg, #8F1717, #C7302A)" style="--c:transparent;--t:#fff"><span class="sw__chip sw__grad"><span>Dégradé</span></span><span class="sw__body"><b>Dégradé signature</b><span class="mono">100° · #8F1717 → #C7302A</span><small>--grad · boutons principaux, chiffres clés, soulignés d'intitulé.</small></span></button>
+        </div>
+        <p class="cap">Toutes les valeurs de cette page viennent de <code>global-base-styles.css</code> et d'<code>AdharaLogoIcon.jsx</code>. <span class="tag tag--site">Site</span></p>
+      </div>
+
+      <div>
+        <h3 class="sub">Répartition</h3>
+        <div class="bar" role="img" aria-label="Répartition des couleurs : 68 % nuit, 20 % surfaces, 6 % texte, 5 % rouge, 1 % étoile">
+          <span style="width:68%;background:#0a0a0d"></span><span style="width:20%;background:#15151c"></span><span style="width:6%;background:#f4f4f7"></span><span style="width:5%;background:#8f1717"></span><span style="width:1%;background:#e0473a"></span>
+        </div>
+        <div class="bar-legend"><span><i style="background:#0a0a0d"></i>Nuit 68 %</span><span><i style="background:#15151c"></i>Surfaces 20 %</span><span><i style="background:#f4f4f7"></i>Texte 6 %</span><span><i style="background:#8f1717"></i>Rouge 5 %</span><span><i style="background:#e0473a"></i>Étoile 1 %</span></div>
+        <p class="note" style="margin-top:0.9rem">Environ neuf dixièmes de neutres sombres. Le rouge marque l'action (bouton, lien actif, survol) et ne sert jamais de fond de grande surface. <span class="tag">Reco</span></p>
+      </div>
+
+      <div>
+        <h3 class="sub">Contraste sur fond Nuit</h3>
+        <div class="list">
+          <div class="list__row"><span class="list__name"><span class="dot" style="background:#f4f4f7"></span>Blanc stellaire</span><span class="list__end"><span class="list__val">18,0 : 1</span><span class="pill ok">Texte courant : oui</span><span class="pill ok">Grand texte, interface : oui</span></span></div>
+          <div class="list__row"><span class="list__name"><span class="dot" style="background:#a2a2b4"></span>Gris brume</span><span class="list__end"><span class="list__val">7,9 : 1</span><span class="pill ok">Texte courant : oui</span><span class="pill ok">Grand texte, interface : oui</span></span></div>
+          <div class="list__row"><span class="list__name"><span class="dot" style="background:#e0473a"></span>Rouge étoile</span><span class="list__end"><span class="list__val">4,8 : 1</span><span class="pill ok">Texte courant : oui</span><span class="pill ok">Grand texte, interface : oui</span></span></div>
+          <div class="list__row"><span class="list__name"><span class="dot" style="background:#c7302a"></span>Rouge vif</span><span class="list__end"><span class="list__val">3,7 : 1</span><span class="pill low">Texte courant : non</span><span class="pill ok">Grand texte, interface : oui</span></span></div>
+          <div class="list__row"><span class="list__name"><span class="dot" style="background:#64647a"></span>Gris ardoise</span><span class="list__end"><span class="list__val">3,4 : 1</span><span class="pill low">Texte courant : non</span><span class="pill ok">Grand texte, interface : oui</span></span></div>
+          <div class="list__row"><span class="list__name"><span class="dot" style="background:#8f1717"></span>Rouge sang</span><span class="list__end"><span class="list__val">2,2 : 1</span><span class="pill low">Texte courant : non</span><span class="pill low">Grand texte, interface : non</span></span></div>
+          <div class="list__row"><span class="list__name"><span class="dot" style="background:#5e0e0e"></span>Rouge profond</span><span class="list__end"><span class="list__val">1,5 : 1</span><span class="pill low">Texte courant : non</span><span class="pill low">Grand texte, interface : non</span></span></div>
+        </div>
+        <p class="cap">Seuils WCAG 2.1 : 4,5 : 1 pour le texte courant, 3 : 1 pour les grands textes et les composants d'interface. Le blanc sur rouge sang atteint 9,1 : 1 et sur rouge vif 5,4 : 1.</p>
+      </div>
+
+      <div>
+        <h3 class="sub">Associations validées</h3>
+        <div class="grid g4">
+          <div class="pair" style="background:#0a0a0d;color:#f4f4f7"><b>Aa Texte</b><span>Blanc stellaire sur Nuit · 18,0 : 1</span></div>
+          <div class="pair" style="background:#15151c;color:#a2a2b4"><b>Aa Texte</b><span>Gris brume sur Surface · 7,2 : 1</span></div>
+          <div class="pair" style="background:#8f1717;color:#fff;border-color:#8f1717"><b>Aa Texte</b><span>Blanc sur Rouge sang · 9,1 : 1</span></div>
+          <div class="pair" style="background:#0a0a0d;color:#e0473a"><b>Aa Texte</b><span>Rouge étoile sur Nuit · 4,8 : 1</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== TYPO ===================== -->
+  <section class="sec" id="typo">
+    <div class="sec__head">
+      <span class="eyebrow">Typographie</span>
+      <h2>Trois polices, trois rôles.</h2>
+      <p class="lead">Space Grotesk porte les titres, Inter porte la lecture, Turret Road ne sert qu'au mot-symbole. Les trois sont gratuites sur Google Fonts.</p>
+    </div>
+    <div class="stack">
+      <div class="grid g3">
+        <div class="fam"><div class="stage stage--aura"><span class="fam__role">Titres · chiffres · intitulés</span><span class="glyph" style="font-family:var(--f-display);font-weight:700;letter-spacing:-0.02em">Aa</span><span class="alpha" style="font-family:var(--f-display);font-weight:600">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</span></div><div><h3 class="sub" style="margin-bottom:0.2rem">Space Grotesk</h3><p class="note">400 · 500 · 600 · <b>700</b>. Titres en 700, espacement −0,02 em, interligne 1,05.</p></div></div>
+        <div class="fam"><div class="stage stage--aura"><span class="fam__role">Texte courant · interface</span><span class="glyph" style="font-family:var(--f-body);font-weight:300">Aa</span><span class="alpha" style="font-family:var(--f-body)">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</span></div><div><h3 class="sub" style="margin-bottom:0.2rem">Inter</h3><p class="note"><b>300</b> · 400 · 500 · 600. Corps en 300, boutons et libellés en 600, interligne 1,6.</p></div></div>
+        <div class="fam"><div class="stage stage--aura"><span class="fam__role">Mot-symbole uniquement</span><span class="glyph" style="font-family:var(--f-mark);font-weight:800;color:var(--b-red)">Aa</span><span class="alpha" style="font-family:var(--f-mark);font-weight:800;letter-spacing:0.03em">ADHARA 0123456789</span></div><div><h3 class="sub" style="margin-bottom:0.2rem">Turret Road</h3><p class="note">700 · <b>800</b>. Capitales, espacement 0,03 em. Jamais pour un titre ni un paragraphe.</p></div></div>
+      </div>
+
+      <div>
+        <h3 class="sub">Échelle typographique</h3>
+        <div class="scale">
+          <div class="scale__row"><div class="meta"><b>Titre de page</b>Space Grotesk 700<br>clamp(2.6rem, 8vw, 5.6rem)</div><div class="sample s-hero">Traversez notre univers.</div></div>
+          <div class="scale__row"><div class="meta"><b>Titre de section</b>Space Grotesk 700<br>clamp(1.9rem, 4.4vw, 3.2rem)</div><div class="sample s-sec">Trois savoir‑faire, un seul niveau d'exigence.</div></div>
+          <div class="scale__row"><div class="meta"><b>Titre de carte</b>Space Grotesk 700<br>1,35 rem</div><div class="sample s-h3">Applications et logiciels</div></div>
+          <div class="scale__row"><div class="meta"><b>Chiffre clé</b>Space Grotesk 700<br>clamp(2rem, 4vw, 3rem) · dégradé</div><div class="sample s-num">140 k+</div></div>
+          <div class="scale__row"><div class="meta"><b>Chapô</b>Inter 300<br>clamp(1.05rem, 1.8vw, 1.3rem)</div><div class="sample s-lead">De l'idée au Play Store, avec audace.</div></div>
+          <div class="scale__row"><div class="meta"><b>Corps</b>Inter 300<br>0,96 rem · interligne 1,6</div><div class="sample s-body">Des logiciels et applications conçus pour répondre à un vrai besoin, et vous simplifier la vie.</div></div>
+          <div class="scale__row"><div class="meta"><b>Intitulé</b>Space Grotesk 600<br>0,78 rem · +0,18 em · capitales</div><div class="sample s-eye">Ce que nous faisons</div></div>
+          <div class="scale__row"><div class="meta"><b>Bouton</b>Inter 600<br>0,95 rem</div><div class="sample s-btn">Démarrer un projet</div></div>
+          <div class="scale__row"><div class="meta"><b>Étiquette</b>Inter 400<br>0,76 rem · +0,08 em · capitales</div><div class="sample s-tag">Écologie · Scan</div></div>
+        </div>
+        <p class="cap">Valeurs de <code>global-base-styles.css</code> et <code>website-styles.css</code>. Les tailles en <code>clamp()</code> s'adaptent entre mobile et grand écran. <span class="tag tag--site">Site</span></p>
+      </div>
+
+      <ul class="rules">
+        <li><span><b>Titres courts, interligne serré.</b> Deux à trois lignes au maximum. Le texte d'un titre est équilibré (<code>text-wrap: balance</code>) et se termine par un point quand c'est une phrase.</span></li>
+        <li><span><b>Une seule couleur par bloc de texte.</b> Blanc pour les titres, gris brume pour le reste. Le rouge est réservé aux intitulés, aux chiffres en dégradé et aux liens actifs.</span></li>
+        <li><span><b>Le dégradé sur du texte</b> ne s'emploie que sur un chiffre ou un mot isolé, jamais sur une phrase.</span></li>
+        <li><span><b>Typographie française.</b> Espace insécable avant « : ; ? ! », tiret insécable dans « Parlons‑en », guillemets « ».</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== MISE EN PAGE ===================== -->
+  <section class="sec" id="mise-en-page">
+    <div class="sec__head">
+      <span class="eyebrow">Mise en page</span>
+      <h2>Un fil central, beaucoup d'air.</h2>
+      <p class="lead">Une colonne de 1160 px maximum, de grandes respirations entre les sections et des coins très arrondis. La page se lit de haut en bas, sans barre de défilement visible.</p>
+    </div>
+    <div class="stack">
+      <dl class="facts">
+        <div><dt>Largeur maximale</dt><dd>1160 px<small>--max · centrée</small></dd></div>
+        <div><dt>Marge latérale</dt><dd>1,5 rem<small>24 px à gauche et à droite</small></dd></div>
+        <div><dt>Espace entre sections</dt><dd>clamp(4rem, 10vw, 8rem)<small>haut et bas</small></dd></div>
+        <div><dt>Barre de navigation</dt><dd>72 px<small>fixe, fond flouté après le défilement</small></dd></div>
+        <div><dt>Grille de cartes</dt><dd>auto-fit, 260 px min<small>écart de 1,2 rem</small></dd></div>
+        <div><dt>Point de rupture</dt><dd>860 px et 560 px<small>menu masqué, colonnes empilées</small></dd></div>
+      </dl>
+
+      <div>
+        <h3 class="sub">Colonne et grille</h3>
+        <div class="gridviz"><div class="gridviz__bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <p class="cap">Les cartes remplissent la ligne par blocs de 260 px minimum : trois colonnes sur grand écran, une seule sur mobile.</p>
+      </div>
+
+      <div>
+        <h3 class="sub">Arrondis, filets, relief</h3>
+        <div class="radii">
+          <div class="radius"><div style="border-radius:100px"></div><b>100 px</b><span>Boutons, sélecteur de langue</span></div>
+          <div class="radius"><div style="border-radius:18px"></div><b>18 px</b><span>Cartes, tuiles de chiffres, cartes d'app</span></div>
+          <div class="radius"><div style="border-radius:14px"></div><b>14 px</b><span>Icône d'application</span></div>
+          <div class="radius"><div style="border-radius:12px"></div><b>12 px</b><span>Champs de formulaire</span></div>
+          <div class="radius"><div style="border-radius:50%"></div><b>50 %</b><span>Icône ronde d'application, photo de profil</span></div>
+        </div>
+        <p class="note" style="margin-top:1rem">Bordures de 1 px à 8 % de blanc. Au survol, la bordure d'une carte passe à 55 % de rouge vif et la carte monte de 6 px. Le seul vrai relief est l'ombre rouge du bouton principal : <code>0 8px 30px</code> à 45 % de rouge sang, puis <code>0 12px 40px</code> à 55 % de rouge vif au survol. <span class="tag tag--site">Site</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPOSANTS ===================== -->
+  <section class="sec" id="composants">
+    <div class="sec__head">
+      <span class="eyebrow">Composants</span>
+      <h2>Les briques de l'interface.</h2>
+      <p class="lead">Chaque exemple est construit avec les styles du site. Survolez-les pour voir les transitions.</p>
+    </div>
+    <div class="stage stage--aura comp">
+      <div>
+        <p class="palette-label" style="color:var(--b-faint)">Boutons</p>
+        <div class="row"><a class="btn btn--primary" href="#composants">Découvrir nos apps</a><a class="btn btn--ghost" href="#composants">Démarrer un projet</a></div>
+      </div>
+      <div class="grid g3">
+        <div><p class="palette-label" style="color:var(--b-faint)">Carte de service</p>
+          <div class="c-card"><span class="ic">▲</span><h3>Applications et logiciels</h3><p>Des logiciels conçus pour répondre à un vrai besoin.</p></div></div>
+        <div><p class="palette-label" style="color:var(--b-faint)">Chiffre clé</p>
+          <div class="c-stat"><b>140 k+</b><span>Téléchargements</span></div></div>
+        <div><p class="palette-label" style="color:var(--b-faint)">Carte d'application</p>
+          <div style="display:grid;gap:0.8rem">
+            <div class="c-app"><span class="icon">P</span><div><b>Proserpine</b><span class="s-tag">Écologie · Scan</span></div></div>
+            <div class="c-app"><span class="icon icon--round"><svg class="mark" style="width:34px;height:34px" viewBox="0 0 190 190" aria-hidden="true"><use href="#a-mark"/></svg></span><div><b>Icône ronde</b><span class="s-tag">Symbole, fond Nuit</span></div></div>
+          </div></div>
+      </div>
+      <div class="grid g3">
+        <div><p class="palette-label" style="color:var(--b-faint)">Intitulé de section</p><span class="eyebrow">Pourquoi Adhara</span></div>
+        <div><p class="palette-label" style="color:var(--b-faint)">Champ (cliquer pour le focus)</p><input class="c-field" id="demo-field" type="text" placeholder="Votre e-mail" aria-label="Exemple de champ"></div>
+        <div><p class="palette-label" style="color:var(--b-faint)">Sélecteur de langue</p><button class="c-toggle" type="button" id="demo-lang"><span class="on">FR</span><span>/</span><span>EN</span></button></div>
+      </div>
+    </div>
+    <p class="cap">Icônes de service : trois formes géométriques pleines, ▲ ◆ ●, en rouge sang. Elles tiennent lieu de pictogrammes, sans jeu d'icônes à maintenir. <span class="tag tag--site">Site</span></p>
+  </section>
+
+  <!-- ===================== FONDS & MOUVEMENT ===================== -->
+  <section class="sec" id="fonds">
+    <div class="sec__head">
+      <span class="eyebrow">Fonds &amp; mouvement</span>
+      <h2>Un ciel vivant derrière le contenu.</h2>
+      <p class="lead">Le fond reste sombre et calme. Quatre couches discrètes le font vivre, et chaque élément apparaît en douceur, en émergeant du flou.</p>
+    </div>
+    <div class="stack">
+      <div class="grid g4">
+        <div><div class="fx fx--aura"></div><div class="fxlabel"><b>Aura</b><span>Quatre halos rouges très doux qui dérivent sur 16 s, aller-retour.</span></div></div>
+        <div><div class="fx fx--stars"></div><div class="fxlabel"><b>Ciel étoilé</b><span>Points blancs et rosés, avec la constellation du Grand Chien.</span></div></div>
+        <div><div class="fx fx--warp"></div><div class="fxlabel"><b>Voile de vitesse</b><span>Vignette rouge qui se resserre quand on défile vite.</span></div></div>
+        <div><div class="fx fx--rail"></div><div class="fxlabel"><b>Rail de défilement</b><span>Trait de 2 px sur le bord droit, curseur en dégradé rouge avec lueur.</span></div></div>
+      </div>
+
+      <div class="grid g2">
+        <div>
+          <h3 class="sub">Apparition au défilement</h3>
+          <div class="stage reveal-demo">
+            <div class="reveal-box" id="reveal-box"><b>Je m'efface dans le décor</b><span>Flou de 10 px, décalage de 28 px, opacité de 0 à 1 en 0,9 s.</span></div>
+            <button class="btn btn--ghost" type="button" id="reveal-replay">Rejouer</button>
+          </div>
+          <p class="cap">L'entrée se décale en cascade (variable <code>--d</code>) ; la sortie est immédiate pour rester réactive. <span class="tag tag--site">Site</span></p>
+        </div>
+        <div>
+          <h3 class="sub">Durées et courbe</h3>
+          <div class="list">
+            <div class="list__row"><span class="list__name">Survol de bouton</span><span class="list__val">0,35 s</span><span class="list__desc">monte de 2 px, ombre plus vive</span></div>
+            <div class="list__row"><span class="list__name">Survol de carte</span><span class="list__val">0,4 s</span><span class="list__desc">monte de 6 px, bordure rouge</span></div>
+            <div class="list__row"><span class="list__name">Lien de navigation</span><span class="list__val">0,7 s</span><span class="list__desc">soulignement dégradé qui s'étire</span></div>
+            <div class="list__row"><span class="list__name">Apparition</span><span class="list__val">0,9 s</span><span class="list__desc">fondu, glissement, flou</span></div>
+            <div class="list__row"><span class="list__name">Aura de fond</span><span class="list__val">16 s</span><span class="list__desc">dérive lente, aller-retour</span></div>
+          </div>
+          <p class="cap">Courbe unique : <code>cubic-bezier(0.22, 1, 0.36, 1)</code>, un départ vif qui se pose doucement. Avec « réduire les animations » activé dans le système, tout s'affiche immédiatement. <span class="tag tag--site">Site</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== VOIX ===================== -->
+  <section class="sec" id="voix">
+    <div class="sec__head">
+      <span class="eyebrow">Voix</span>
+      <h2>Direct, confiant, un peu complice.</h2>
+      <p class="lead">Adhara parle comme une jeune équipe sûre de son travail : phrases courtes, verbes d'action, aucune promesse floue.</p>
+    </div>
+    <div class="stack">
+      <div class="grid g3">
+        <div class="say"><q>Jeunes, rapides, sans compromis.</q><small>Titre de section · rythme en trois temps</small></div>
+        <div class="say"><q>Écrivez-nous, on répond vite. C'est notre truc.</q><small>Invitation à contacter · ton complice</small></div>
+        <div class="say"><q>De l'idée au Play Store, avec audace.</q><small>Chapô du hero · le chemin complet en une phrase</small></div>
+      </div>
+      <div class="grid g2">
+        <ul class="rules">
+          <li><span><b>Phrases courtes.</b> Une idée par phrase, des verbes d'action : créer, livrer, simplifier.</span></li>
+          <li><span><b>Vouvoiement</b> dans l'interface française, « you » en anglais. Le « on » reste permis pour parler de l'équipe.</span></li>
+          <li><span><b>Du concret.</b> Un vrai besoin, un vrai chiffre, une vraie application. Pas de superlatif sans preuve.</span></li>
+          <li><span><b>Bilingue dès l'écriture.</b> Chaque texte est pensé pour FR et EN. On évite les expressions qui ne se traduisent pas.</span></li>
+        </ul>
+        <div class="grid" style="gap:0.8rem">
+          <div class="say say--no"><q>Des solutions innovantes et synergiques pour votre transformation digitale.</q><small>À éviter · jargon sans objet</small></div>
+          <div class="say say--no"><q>Nous sommes leaders sur le marché.</q><small>À éviter · affirmation sans preuve</small></div>
+        </div>
+      </div>
+      <p class="note">Écriture de la marque : « Adhara » avec une majuscule dans un texte, « ADHARA » en capitales uniquement dans le mot-symbole. Le slogan officiel reste à choisir ; l'accroche du hero est provisoire. <span class="tag">Reco</span></p>
+    </div>
+  </section>
+
+  <!-- ===================== POINTS D'ATTENTION ===================== -->
+  <section class="sec" id="attention">
+    <div class="sec__head">
+      <span class="eyebrow">Points d'attention</span>
+      <h2>Ce que le site doit encore aligner.</h2>
+      <p class="lead">En relevant les valeurs, j'ai trouvé cinq écarts entre le site actuel et les règles de cette charte. Aucun n'a été modifié dans le code.</p>
+    </div>
+    <div class="stack">
+      <div class="flag"><span class="flag__n">1</span><div><h3>Le rouge sang est trop sombre pour du texte</h3><p>Sur le fond Nuit, <b>#8F1717 atteint 2,2 : 1</b>. Le site s'en sert pour le mot-symbole, les intitulés, l'adresse e-mail et la langue active.</p><p>Recommandation : utiliser <b>#E0473A</b> (4,8 : 1) pour tout texte rouge sur fond sombre, et garder #8F1717 pour les aplats, le dégradé et les bordures.</p></div></div>
+      <div class="flag"><span class="flag__n">2</span><div><h3>Le favicon n'est pas le logo</h3><p><code>browser-tab-icon.svg</code> montre un « A » stylisé, noté « placeholder » dans le fichier. Il ne reprend ni l'anneau ni la constellation.</p><p>Recommandation : symbole seul sur fond #0A0A0D, la même construction que la photo de profil des réseaux.</p></div></div>
+      <div class="flag"><span class="flag__n">3</span><div><h3>Deux rouges pour l'étoile</h3><p>Le logo affiche l'étoile en #E0473A avec une lueur #C7302A, la photo de profil en #C7302A plat. Le commentaire du CSS précise que la palette est « provisoire, à caler sur le logo ».</p><p>Cette charte tranche : <b>#E0473A en version lumineuse (écran), #C7302A en version plate</b>, et #8F1717 reste le rouge de fond.</p></div></div>
+      <div class="flag"><span class="flag__n">4</span><div><h3>Gris ardoise réservé aux textes secondaires</h3><p><b>#64647A atteint 3,4 : 1</b>. Il convient aux placeholders et aux légendes, pas à une information dont l'utilisateur a besoin (prix, date, erreur).</p></div></div>
+      <div class="flag"><span class="flag__n">5</span><div><h3>Ce qui n'existe pas encore</h3><p>Aucune palette claire, aucune couleur d'état (succès, erreur, alerte) et aucun style de focus pour les boutons et les liens : le navigateur applique le sien. À définir avant d'ajouter un tableau de bord, un formulaire avec validation ou un mode clair.</p></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>Charte graphique Adhara · version 1.0</span>
+  <span>Établie à partir du code source du site (React + Vite)</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var toast = document.getElementById("toast"), timer;
+  function say(msg) {
+    toast.textContent = msg;
+    toast.classList.add("on");
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.classList.remove("on"); }, 1600);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", "");
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+  document.querySelectorAll(".sw[data-hex]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var text = b.getAttribute("data-hex");
+      function done(ok) { say(ok ? "Copié : " + text : "Sélectionnez : " + text); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
+      } else { done(fallbackCopy(text)); }
+    });
+  });
+
+  var box = document.getElementById("reveal-box"), btn = document.getElementById("reveal-replay");
+  if (box && btn) {
+    btn.addEventListener("click", function () {
+      box.classList.add("out");
+      void box.offsetWidth;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { box.classList.remove("out"); }); });
+    });
+  }
+
+  var lang = document.getElementById("demo-lang");
+  if (lang) {
+    lang.addEventListener("click", function () {
+      var s = lang.querySelectorAll("span");
+      var fr = s[0].classList.contains("on");
+      s[0].classList.toggle("on", !fr);
+      s[2].classList.toggle("on", fr);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

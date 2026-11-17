@@ -7,10 +7,8 @@ import * as THREE from "three";
 
    Architecture des profondeurs :
      · constellation du Grand Chien  → à l'infini (phare, ne se rattrape pas)
-     · jalons de voyage              → croisés une fois (planètes, galaxie…)
-     · nébuleuses volumétriques      → traversées de part en part
      · champ d'étoiles infini        → recyclé en Z (voyage sans fin)
-     · poussière                     → premier plan, vitesse maximale
+   Uniquement des étoiles : ni nébuleuse, ni planète, ni galaxie.
 
    DA : noir profond, rouge sang #8F1717, Adhara néon blanche.
    ============================================================ */
@@ -40,60 +38,6 @@ function radialTex(stops, size = 128) {
   g.fillStyle = grd; g.fillRect(0, 0, size, size);
   return new THREE.CanvasTexture(c);
 }
-function nebulaTex() {
-  // nuage organique : plusieurs taches douces superposées
-  const c = document.createElement("canvas"); c.width = c.height = 256;
-  const g = c.getContext("2d");
-  for (let i = 0; i < 22; i++) {
-    const x = rand(60, 196), y = rand(60, 196), r = rand(22, 78);
-    const grd = g.createRadialGradient(x, y, 0, x, y, r);
-    grd.addColorStop(0, `rgba(255,255,255,${rand(0.05, 0.13)})`);
-    grd.addColorStop(1, "rgba(255,255,255,0)");
-    g.fillStyle = grd; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill();
-  }
-  // atténuation des bords pour éviter le carré visible
-  const vg = g.createRadialGradient(128, 128, 40, 128, 128, 128);
-  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,1)");
-  g.globalCompositeOperation = "destination-out";
-  g.fillStyle = vg; g.fillRect(0, 0, 256, 256);
-  return new THREE.CanvasTexture(c);
-}
-function galaxyTex() {
-  const c = document.createElement("canvas"); c.width = c.height = 256;
-  const g = c.getContext("2d"); g.translate(128, 128);
-  const core = g.createRadialGradient(0, 0, 0, 0, 0, 120);
-  core.addColorStop(0, "rgba(255,246,240,0.95)"); core.addColorStop(0.12, "rgba(255,190,175,0.45)");
-  core.addColorStop(0.45, "rgba(170,120,190,0.16)"); core.addColorStop(1, "rgba(90,60,130,0)");
-  g.save(); g.scale(1, 0.40); g.fillStyle = core; g.beginPath(); g.arc(0, 0, 122, 0, 7); g.fill(); g.restore();
-  g.rotate(0.4); g.lineCap = "round";
-  for (let a = 0; a < 2; a++) {
-    g.strokeStyle = `rgba(230,200,220,${0.10 - a * 0.02})`; g.lineWidth = 9 - a * 3;
-    g.beginPath();
-    for (let i = 0; i < 70; i++) {
-      const r = i * 1.62, an = i * 0.155 + a * Math.PI;
-      const x = Math.cos(an) * r, y = Math.sin(an) * r * 0.40;
-      i ? g.lineTo(x, y) : g.moveTo(x, y);
-    }
-    g.stroke();
-  }
-  return new THREE.CanvasTexture(c);
-}
-function planetTex(a, b, c2, bands) {
-  const c = document.createElement("canvas"); c.width = c.height = 128;
-  const g = c.getContext("2d");
-  const grd = g.createRadialGradient(42, 40, 4, 64, 64, 63);
-  grd.addColorStop(0, a); grd.addColorStop(0.45, b); grd.addColorStop(0.86, c2); grd.addColorStop(1, "rgba(8,4,6,0)");
-  g.fillStyle = grd; g.beginPath(); g.arc(64, 64, 63, 0, 7); g.fill();
-  if (bands) {
-    g.globalCompositeOperation = "source-atop"; g.globalAlpha = 0.18;
-    for (let i = 0; i < 7; i++) {
-      g.fillStyle = i % 2 ? "#3a1a18" : "#e0a882";
-      g.fillRect(0, 12 + i * 15, 128, rand(4, 9));
-    }
-  }
-  return new THREE.CanvasTexture(c);
-}
-
 export default function AnimatedSpaceBackground() {
   const ref = useRef(null);
   const veilRef = useRef(null);
@@ -102,7 +46,15 @@ export default function AnimatedSpaceBackground() {
     const canvas = ref.current;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+    // Sans WebGL (vieil appareil, accélération graphique coupée…), on
+    // renonce à la 3D au lieu de faire planter tout le site.
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+    } catch (err) {
+      console.warn("WebGL indisponible : rendu 3D désactivé.", err);
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const scene = new THREE.Scene();
@@ -113,8 +65,6 @@ export default function AnimatedSpaceBackground() {
     const dotTex = radialTex([[0, "rgba(255,255,255,1)"], [0.35, "rgba(255,255,255,0.55)"], [1, "rgba(255,255,255,0)"]], 64);
     const starTex = radialTex([[0, "rgba(255,255,255,1)"], [0.26, "rgba(255,226,220,0.88)"], [0.55, "rgba(200,44,40,0.42)"], [1, "rgba(143,23,23,0)"]]);
     const adharaTex = radialTex([[0, "rgba(255,255,255,1)"], [0.22, "rgba(255,238,232,0.96)"], [0.48, "rgba(226,64,52,0.55)"], [1, "rgba(143,23,23,0)"]]);
-    const nebTex = nebulaTex();
-    const galTex = galaxyTex();
 
     /* ============================================================
        1. CHAMP D'ÉTOILES INFINI (3 strates + traînées de vitesse)
@@ -168,106 +118,7 @@ export default function AnimatedSpaceBackground() {
     scene.add(new THREE.LineSegments(trailGeo, trailMat));
 
     /* ============================================================
-       2. NÉBULEUSES VOLUMÉTRIQUES (on les traverse)
-       ============================================================ */
-    const nebulae = [];
-    const NEB_DEF = [
-      { z: -120, c: 0x8f1717, s: 340, o: 0.34 }, { z: -300, c: 0x6d1030, s: 300, o: 0.30 },
-      { z: -520, c: 0x8f1717, s: 400, o: 0.32 }, { z: -700, c: 0x3a1c62, s: 320, o: 0.24 },
-      { z: -900, c: 0xa01c1c, s: 380, o: 0.34 }, { z: -1120, c: 0x5d1230, s: 340, o: 0.28 },
-      { z: -1340, c: 0x8f1717, s: 420, o: 0.32 }
-    ];
-    NEB_DEF.forEach((n) => {
-      // 3 calques décalés par nébuleuse → volume réel quand on la traverse
-      for (let k = 0; k < 3; k++) {
-        const sp = new THREE.Sprite(new THREE.SpriteMaterial({
-          map: nebTex, color: n.c, transparent: true, opacity: 0,
-          depthWrite: false, blending: THREE.AdditiveBlending
-        }));
-        sp.position.set(rand(-70, 70), rand(-50, 50), n.z + k * 42 - 42);
-        const s = n.s * rand(0.7, 1.15); sp.scale.set(s, s, 1);
-        sp.material.rotation = rand(0, 6.28);
-        scene.add(sp);
-        nebulae.push({ sp, base: n.o * rand(0.6, 1), spin: rand(-0.02, 0.02) });
-      }
-    });
-
-    /* ============================================================
-       3. JALONS DE VOYAGE (croisés une seule fois)
-       ============================================================ */
-    const landmarks = [];
-
-    // — Planète à anneau (rouille)
-    // Positionnée pour tomber dans la zone vide du hero : le titre
-    // occupe jusqu'à 91% de la largeur mais seulement entre 30-61% de
-    // la hauteur ; l'accroche et les boutons ne dépassent pas 54% de
-    // largeur. Cette position (bas-droite, ~78% x / ~80% y à l'écran)
-    // garde une marge confortable avec chacun de ces blocs de texte.
-    {
-      const g = new THREE.Group(); g.position.set(82, -70, -150);
-      const p = new THREE.Sprite(new THREE.SpriteMaterial({ map: planetTex("#d59a72", "#944c38", "#331319", false), transparent: true, depthWrite: false }));
-      p.scale.set(52, 52, 1); g.add(p);
-      const rp = []; for (let i = 0; i <= 96; i++) { const a = (i / 96) * 6.283; rp.push(Math.cos(a) * 40, Math.sin(a) * 40 * 0.30, 0); }
-      const rg = new THREE.BufferGeometry(); rg.setAttribute("position", new THREE.BufferAttribute(new Float32Array(rp), 3));
-      const ring = new THREE.Line(rg, new THREE.LineBasicMaterial({ color: 0xd8a882, transparent: true, opacity: 0.55 }));
-      ring.rotation.z = -0.42; g.add(ring);
-      const rp2 = []; for (let i = 0; i <= 96; i++) { const a = (i / 96) * 6.283; rp2.push(Math.cos(a) * 47, Math.sin(a) * 47 * 0.30, 0); }
-      const rg2 = new THREE.BufferGeometry(); rg2.setAttribute("position", new THREE.BufferAttribute(new Float32Array(rp2), 3));
-      const ring2 = new THREE.Line(rg2, new THREE.LineBasicMaterial({ color: 0xc78a6a, transparent: true, opacity: 0.3 }));
-      ring2.rotation.z = -0.42; g.add(ring2);
-      scene.add(g); landmarks.push({ g, kind: "planet", spin: 0.05 });
-    }
-
-    // — Champ d'astéroïdes (on le traverse)
-    {
-      const N = 420, pos = new Float32Array(N * 3);
-      for (let i = 0; i < N; i++) {
-        const a = rand(0, 6.283), r = rand(30, 150);
-        pos[i * 3] = Math.cos(a) * r; pos[i * 3 + 1] = Math.sin(a) * r * 0.45 + rand(-14, 14); pos[i * 3 + 2] = rand(-70, 70);
-      }
-      const geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      const belt = new THREE.Points(geo, new THREE.PointsMaterial({
-        size: 2.4, map: dotTex, color: 0xbf9a86, sizeAttenuation: true,
-        transparent: true, opacity: 0.75, depthWrite: false, fog: true
-      }));
-      belt.position.set(20, -10, -560); scene.add(belt);
-      landmarks.push({ g: belt, kind: "belt", spin: 0.03 });
-    }
-
-    // — Galaxie (accent froid : fait vibrer le rouge)
-    {
-      const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: galTex, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }));
-      sp.position.set(96, 46, -820); sp.scale.set(190, 190, 1);
-      scene.add(sp); landmarks.push({ g: sp, kind: "galaxy", spin: 0.012 });
-    }
-
-    // — Pulsar (phare rythmique + ondes)
-    const pulsarRings = [];
-    {
-      const g = new THREE.Group(); g.position.set(-40, -26, -1060);
-      const core = new THREE.Sprite(new THREE.SpriteMaterial({ map: adharaTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
-      core.scale.set(26, 26, 1); g.add(core);
-      for (let i = 0; i < 3; i++) {
-        const pts = []; for (let j = 0; j <= 64; j++) { const a = (j / 64) * 6.283; pts.push(Math.cos(a), Math.sin(a), 0); }
-        const rg = new THREE.BufferGeometry(); rg.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pts), 3));
-        const ln = new THREE.Line(rg, new THREE.LineBasicMaterial({ color: 0xff9a88, transparent: true, opacity: 0, blending: THREE.AdditiveBlending }));
-        g.add(ln); pulsarRings.push({ ln, t: i * 1.3 });
-      }
-      scene.add(g); landmarks.push({ g, kind: "pulsar", core });
-    }
-
-    // — Duo planète + lune (fin de traversée)
-    {
-      const g = new THREE.Group(); g.position.set(64, 22, -1300);
-      const p = new THREE.Sprite(new THREE.SpriteMaterial({ map: planetTex("#e8b48a", "#a8563c", "#2c1016", true), transparent: true, depthWrite: false }));
-      p.scale.set(66, 66, 1); g.add(p);
-      const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: planetTex("#cfc6c0", "#7a6f6a", "#241d1c", false), transparent: true, depthWrite: false }));
-      m.scale.set(17, 17, 1); m.position.set(52, -16, 12); g.add(m);
-      scene.add(g); landmarks.push({ g, kind: "duo", moon: m });
-    }
-
-    /* ============================================================
-       4. CONSTELLATION À L'INFINI (le phare Adhara)
+       2. CONSTELLATION À L'INFINI (le phare Adhara)
        ============================================================ */
     const nodes = {}; let ni = 0;
     for (const k in CANIS) {
@@ -309,18 +160,6 @@ export default function AnimatedSpaceBackground() {
     ringGroup.add(new THREE.LineSegments(tickGeo, new THREE.LineBasicMaterial({ color: 0xc73030, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending, fog: false })));
     const marker = new THREE.Sprite(new THREE.SpriteMaterial({ map: dotTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false }));
     marker.scale.set(3, 3, 1); ringGroup.add(marker);
-
-    /* ============================================================
-       5. POUSSIÈRE DE PREMIER PLAN
-       ============================================================ */
-    const dN = 420, dPos = new Float32Array(dN * 3);
-    for (let i = 0; i < dN; i++) { dPos[i * 3] = rand(-80, 80); dPos[i * 3 + 1] = rand(-55, 55); dPos[i * 3 + 2] = rand(-160, 20); }
-    const dGeo = new THREE.BufferGeometry(); dGeo.setAttribute("position", new THREE.BufferAttribute(dPos, 3));
-    const dust = new THREE.Points(dGeo, new THREE.PointsMaterial({
-      size: 1.1, map: dotTex, color: 0xffb4a2, sizeAttenuation: true,
-      transparent: true, opacity: 0.5, depthWrite: false, blending: THREE.AdditiveBlending
-    }));
-    scene.add(dust);
 
     /* ============================================================
        Pilotage : scroll → avancée, vitesse → warp
@@ -395,34 +234,6 @@ export default function AnimatedSpaceBackground() {
         trailGeo.attributes.position.needsUpdate = true;
       }
 
-      // ---- nébuleuses : intensité selon la distance (traversée douce) ----
-      for (const n of nebulae) {
-        const d = Math.abs(n.sp.position.z - camZ);
-        // pic à mi-distance, s'efface quand on est dedans ou trop loin
-        const f = Math.max(0, Math.min(1, (d - 8) / 150)) * Math.max(0, 1 - (d - 150) / 520);
-        n.sp.material.opacity = n.base * f;
-        if (!reduce) n.sp.material.rotation += n.spin * dt;
-      }
-
-      // ---- jalons ----
-      for (const L of landmarks) {
-        if (reduce) break;
-        if (L.kind === "planet") { L.g.children[0].material.rotation += 0.04 * dt; L.g.rotation.z += 0.006 * dt; }
-        else if (L.kind === "belt") { L.g.rotation.z += L.spin * dt; }
-        else if (L.kind === "galaxy") { L.g.material.rotation += L.spin * dt; }
-        else if (L.kind === "duo") { const a = t * 0.25; L.moon.position.set(Math.cos(a) * 54, Math.sin(a) * 20 - 6, Math.sin(a) * 22); }
-        else if (L.kind === "pulsar") {
-          const flare = 0.55 + 0.45 * Math.pow(Math.max(0, Math.sin(t * 2.4)), 10);
-          L.core.scale.setScalar(26 * (0.85 + flare * 0.45));
-          L.core.material.opacity = 0.55 + flare * 0.45;
-          for (const rg of pulsarRings) {
-            rg.t += dt; if (rg.t > 3.9) rg.t = 0;
-            const s = rg.t * 46; rg.ln.scale.set(s, s, 1);
-            rg.ln.material.opacity = Math.max(0, 0.45 * (1 - rg.t / 3.9));
-          }
-        }
-      }
-
       // ---- ciel : la constellation reste à l'infini devant nous ----
       sky.position.z = camZ - 300;
       sky.rotation.y = -look.x * 0.10 + prog * 0.22;    // le point de vue tourne au fil du voyage
@@ -440,11 +251,6 @@ export default function AnimatedSpaceBackground() {
       }
       lineMat.opacity = 0.3 * (1 - warp * 0.85);
       if (!reduce) { ringGroup.rotation.z += 0.13 * dt; const a = t * 0.6; marker.position.set(Math.cos(a) * R, Math.sin(a) * R, 0); }
-
-      // ---- poussière : accrochée devant la caméra ----
-      dust.position.z = camZ - 60;
-      if (!reduce) dust.rotation.z += 0.05 * dt;
-      dust.material.opacity = 0.5 * (1 - warp * 0.5);
 
       // voile de vitesse (CSS)
       if (veilRef.current) veilRef.current.style.opacity = String(warp * 0.55);
